@@ -1,5 +1,43 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Stamp, GraduationCap, Star } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
+const CountUp = ({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let start = 0;
+          const increment = end / (duration / 16);
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+              setCount(end);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, 16);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [end, duration, hasAnimated]);
+
+  return (
+    <div ref={ref} className="text-3xl font-bold text-foreground">
+      {count.toLocaleString()}{suffix}
+    </div>
+  );
+};
 
 const HeroSection = () => {
   return (
@@ -47,11 +85,11 @@ const HeroSection = () => {
             {/* Stats */}
             <div className="flex gap-12 pt-8">
               <div className="animate-fade-in-up delay-200">
-                <div className="text-3xl font-bold text-foreground">35K+</div>
+                <CountUp end={1500} suffix="+" duration={2000} />
                 <div className="text-sm text-muted-foreground">Cases Solved</div>
               </div>
               <div className="animate-fade-in-up delay-300">
-                <div className="text-3xl font-bold text-foreground">100+</div>
+                <CountUp end={55} suffix="+" duration={1500} />
                 <div className="text-sm text-muted-foreground">Partner Universities</div>
               </div>
             </div>
@@ -75,7 +113,7 @@ const HeroSection = () => {
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <Star className="w-5 h-5 text-primary" />
                 </div>
-                <span className="font-semibold text-foreground">35K+ Success</span>
+                <span className="font-semibold text-foreground">1.5K+ Success</span>
               </div>
             </div>
             
