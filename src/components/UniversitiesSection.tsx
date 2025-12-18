@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const universities = [
   { name: "Universiti Malaya", shortName: "UM", location: "Kuala Lumpur", color: "from-blue-600 to-blue-800" },
@@ -75,15 +76,15 @@ const UniversitiesSection = () => {
           ))}
         </div>
 
-        {/* View All Button */}
+        {/* Explore Universities Button */}
         <div className="text-center mt-12">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
+          <Link
+            to="/universities"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-all group"
           >
-            View all 55+ partner universities
-            <span>→</span>
-          </a>
+            Explore Universities
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>
