@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { MapPin } from "lucide-react";
 
 const universities = [
-  { name: "University of Melbourne", country: "Australia", logo: "🇦🇺" },
-  { name: "University of Toronto", country: "Canada", logo: "🇨🇦" },
-  { name: "University of Oxford", country: "UK", logo: "🇬🇧" },
-  { name: "MIT", country: "USA", logo: "🇺🇸" },
-  { name: "NUS Singapore", country: "Singapore", logo: "🇸🇬" },
-  { name: "University of Auckland", country: "New Zealand", logo: "🇳🇿" },
-  { name: "TU Munich", country: "Germany", logo: "🇩🇪" },
-  { name: "University of Malaysia", country: "Malaysia", logo: "🇲🇾" },
+  { name: "Universiti Malaya", shortName: "UM", location: "Kuala Lumpur", color: "from-blue-600 to-blue-800" },
+  { name: "Universiti Putra Malaysia", shortName: "UPM", location: "Serdang", color: "from-green-600 to-green-800" },
+  { name: "Universiti Kebangsaan Malaysia", shortName: "UKM", location: "Bangi", color: "from-red-600 to-red-800" },
+  { name: "Universiti Teknologi Malaysia", shortName: "UTM", location: "Johor Bahru", color: "from-purple-600 to-purple-800" },
+  { name: "Universiti Sains Malaysia", shortName: "USM", location: "Penang", color: "from-yellow-500 to-orange-600" },
+  { name: "Taylor's University", shortName: "TU", location: "Subang Jaya", color: "from-indigo-600 to-indigo-800" },
+  { name: "Sunway University", shortName: "SU", location: "Petaling Jaya", color: "from-orange-500 to-red-600" },
+  { name: "UCSI University", shortName: "UCSI", location: "Cheras", color: "from-teal-600 to-teal-800" },
 ];
 
 const UniversitiesSection = () => {
@@ -44,7 +44,7 @@ const UniversitiesSection = () => {
             Partner <span className="gradient-text">Universities</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We work with top universities around the world
+            We work with top Malaysian universities to help you achieve your academic goals
           </p>
         </div>
 
@@ -58,15 +58,18 @@ const UniversitiesSection = () => {
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                {uni.logo}
+              {/* Logo Placeholder with Gradient */}
+              <div 
+                className={`w-16 h-16 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md`}
+              >
+                <span className="text-white font-bold text-lg">{uni.shortName}</span>
               </div>
               <h3 className="font-semibold text-foreground text-sm lg:text-base mb-2 line-clamp-2">
                 {uni.name}
               </h3>
               <div className="flex items-center gap-1 text-muted-foreground text-xs">
                 <MapPin className="w-3 h-3" />
-                <span>{uni.country}</span>
+                <span>{uni.location}, Malaysia</span>
               </div>
             </div>
           ))}
@@ -78,7 +81,7 @@ const UniversitiesSection = () => {
             href="#contact"
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
-            View all 100+ partner universities
+            View all 55+ partner universities
             <span>→</span>
           </a>
         </div>
