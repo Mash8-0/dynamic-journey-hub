@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap } from "lucide-react";
 
@@ -15,11 +16,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Universities", href: "#universities" },
-    { name: "Services", href: "#services" },
-    { name: "Processing", href: "#processing" },
-    { name: "Success Story", href: "#success" },
-    { name: "About Us", href: "#about" },
+    { name: "Universities", href: "/universities" },
+    { name: "Services", href: "/services" },
+    { name: "Processing", href: "/processing" },
+    { name: "Success Story", href: "/success-story" },
+    { name: "About Us", href: "/about" },
   ];
 
   return (
@@ -33,33 +34,35 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center transition-transform group-hover:scale-110">
               <GraduationCap className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className="font-display text-xl font-bold text-foreground">
               VisaRoute
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="text-foreground/80 hover:text-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button className="gradient-bg text-primary-foreground hover:opacity-90 shadow-soft transition-all hover:shadow-hover">
-              Contact Us
-            </Button>
+            <Link to="/contact">
+              <Button className="gradient-bg text-primary-foreground hover:opacity-90 shadow-soft transition-all hover:shadow-hover">
+                Contact Us
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,18 +79,20 @@ const Navbar = () => {
           <div className="lg:hidden absolute top-20 left-0 right-0 bg-background border-b border-border animate-slide-in-bottom">
             <div className="container px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <Button className="gradient-bg text-primary-foreground w-full mt-4">
-                Contact Us
-              </Button>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button className="gradient-bg text-primary-foreground w-full mt-4">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
         )}
