@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +19,9 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
+      // Lazy load supabase client only when needed
+      const { supabase } = await import("@/integrations/supabase/client");
+      
       // Save to database
       const { error: dbError } = await supabase
         .from("contact_submissions")
