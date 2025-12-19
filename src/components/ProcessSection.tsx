@@ -82,8 +82,8 @@ const ProcessSection = () => {
   const particles = useMemo(() => generateParticles(30), []);
 
   // Step positions where the rocket should stop (mapped to visual positions)
-  const stepPositions = [0, 0.18, 0.40, 0.62, 0.85]; // Start, Step1, Step2, Step3, Step4
-  const scrollTriggers = [0, 0.15, 0.35, 0.55, 0.75]; // Scroll progress to trigger each position
+  const stepPositions = [0, 0.18, 0.40, 0.62, 0.82, 0.95]; // Start, Step1, Step2, Step3, Step4, End
+  const scrollTriggers = [0, 0.12, 0.30, 0.48, 0.66, 0.85]; // Scroll progress to trigger each position
 
   // Function to create stepped movement with stops at each milestone
   const getSteppedProgress = (rawProgress: number) => {
@@ -124,9 +124,9 @@ const ProcessSection = () => {
       setRocketProgress(steppedProgress);
       
       // Rocket vanishes when reaching the CTA button
-      setRocketFinished(rawProgress >= 0.95);
+      setRocketFinished(rawProgress >= 0.88);
 
-      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
+      const stepThresholds = [0.12, 0.30, 0.48, 0.66];
       const newVisibleSteps = stepThresholds.map(threshold => rawProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
       
