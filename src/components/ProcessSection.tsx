@@ -82,24 +82,18 @@ const ProcessSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
 
-      // More gradual scroll progress - rocket moves only within the section viewport
-      const startOffset = windowHeight * 0.8; // Start when section is 80% into view
-      const endOffset = sectionHeight * 0.9; // End before section completely passes
-      const scrollDistance = startOffset + endOffset;
-      const currentScroll = startOffset - sectionTop;
-      
-      const scrollProgress = Math.max(0, Math.min(1, currentScroll / scrollDistance));
+      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 0.5)));
       setRocketProgress(scrollProgress);
       
       // Rocket vanishes when reaching the CTA button
       setRocketFinished(scrollProgress >= 0.95);
 
-      const stepThresholds = [0.18, 0.40, 0.62, 0.84];
+      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
       const newVisibleSteps = stepThresholds.map(threshold => scrollProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -316,6 +310,20 @@ const ProcessSection = () => {
                     }`}
                     style={{ transitionDelay: `${index * 200 + 100}ms` }}
                   >
+                    {/* Step Badge - Glossy glass effect */}
+                    <div 
+                      className={`inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-muted/60 border border-border/40 backdrop-blur-xl mb-4 group hover:scale-105 transition-all duration-300 ${
+                        isLeft ? "" : "ml-auto"
+                      }`}
+                      style={{
+                        boxShadow: '0 8px 32px -8px hsl(var(--primary) / 0.2), 0 4px 16px -4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.05)'
+                      }}
+                    >
+                      <span className={`w-9 h-9 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-sm font-bold text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        {index + 1}
+                      </span>
+                      <span className="text-foreground font-semibold text-lg">{step.step}</span>
+                    </div>
 
                     {/* Items */}
                     <div className={`space-y-3 ${isLeft ? "" : "text-right"}`}>
