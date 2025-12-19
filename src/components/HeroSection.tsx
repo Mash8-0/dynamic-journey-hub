@@ -103,8 +103,8 @@ const HeroSection = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-2 border-dashed border-primary/20 z-0 animate-spin-slow" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-primary/10 z-0 animate-spin-slow-reverse" />
             
-            {/* Graduate Images - Centered in circles */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] flex items-center justify-center">
+            {/* Graduate Images - Centered in circles, shifted left */}
+            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 z-[5] flex items-center justify-center">
               <img 
                 src={graduateGirl} 
                 alt="Female graduate student" 
