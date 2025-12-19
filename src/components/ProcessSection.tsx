@@ -256,21 +256,37 @@ const ProcessSection = () => {
                   key={step.step}
                   className={`relative flex items-center ${isLeft ? "justify-start" : "justify-end"}`}
                 >
-                  {/* Connection Line with gradient - aligned with step badge */}
+                  {/* Connection Line with drawing animation */}
                   <div 
-                    className={`absolute top-6 h-0.5 w-12 md:w-20 transition-all duration-700 ${
+                    className={`absolute top-6 h-0.5 w-12 md:w-20 overflow-hidden ${
                       isLeft 
                         ? "right-1/2" 
                         : "left-1/2"
-                    } ${isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"}`}
-                    style={{ 
-                      transformOrigin: isLeft ? "right" : "left",
-                      transitionDelay: `${index * 150}ms`,
-                      background: isLeft 
-                        ? `linear-gradient(to left, hsl(var(--primary)), transparent)`
-                        : `linear-gradient(to right, hsl(var(--primary)), transparent)`,
-                    }}
-                  />
+                    }`}
+                  >
+                    {/* Base line */}
+                    <div 
+                      className={`absolute inset-0 transition-all duration-1000 ease-out ${
+                        isVisible ? "scale-x-100" : "scale-x-0"
+                      }`}
+                      style={{ 
+                        transformOrigin: isLeft ? "right" : "left",
+                        transitionDelay: `${index * 150}ms`,
+                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, hsl(var(--primary)), hsl(var(--primary) / 0.3))`,
+                      }}
+                    />
+                    {/* Animated glow traveling along the line */}
+                    <div 
+                      className={`absolute inset-y-0 w-8 transition-opacity duration-500 ${
+                        isVisible ? "opacity-100" : "opacity-0"
+                      }`}
+                      style={{ 
+                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, transparent, hsl(var(--primary)), transparent)`,
+                        animation: isVisible ? `${isLeft ? 'drawLineLeft' : 'drawLineRight'} 1.5s ease-out ${index * 150 + 200}ms forwards` : 'none',
+                        filter: 'blur(2px)',
+                      }}
+                    />
+                  </div>
 
                   {/* Decorative dot at end of line */}
                   <div 

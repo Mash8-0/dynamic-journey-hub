@@ -318,3 +318,26 @@
 .animate-on-scroll.animated {
   opacity: 1;
 }
+
+/* Line drawing animations for process section */
+@keyframes drawLineLeft {
+  0% {
+    left: 100%;
+    opacity: 1;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes drawLineRight {
+  0% {
+    right: 100%;
+    opacity: 1;
+  }
+  100% {
+    right: -100%;
+    opacity: 0;
+  }
+}
