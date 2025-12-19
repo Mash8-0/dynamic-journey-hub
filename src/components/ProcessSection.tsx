@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Rocket, Sparkles, Flame, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon } from "lucide-react";
+import { Rocket, Sparkles, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -183,26 +183,15 @@ const ProcessSection = () => {
                 <Rocket className="w-6 h-6 text-primary-foreground rotate-[135deg]" />
               </div>
               
-              {/* Fire/Flame effect - improved */}
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                {/* Main flame */}
-                <div className="relative">
-                  <Flame className="w-5 h-5 text-orange-500 animate-pulse rotate-180" style={{ animationDuration: '0.3s' }} />
-                  <Flame className="w-4 h-4 text-yellow-400 animate-pulse rotate-180 absolute top-0 left-1/2 -translate-x-1/2" style={{ animationDuration: '0.2s' }} />
-                </div>
-                {/* Flame trail */}
-                <div className="flex gap-0.5 -mt-1">
-                  <div className="w-1.5 h-3 bg-gradient-to-t from-transparent via-orange-400 to-yellow-300 rounded-full animate-pulse" style={{ animationDuration: '0.15s' }} />
-                  <div className="w-2 h-4 bg-gradient-to-t from-transparent via-orange-500 to-yellow-400 rounded-full animate-pulse" style={{ animationDuration: '0.2s' }} />
-                  <div className="w-1.5 h-3 bg-gradient-to-t from-transparent via-orange-400 to-yellow-300 rounded-full animate-pulse" style={{ animationDuration: '0.15s' }} />
-                </div>
-                {/* Smoke particles */}
-                <div className="flex gap-1 -mt-1">
-                  <div className="w-1 h-1 rounded-full bg-orange-300/80 animate-ping" style={{ animationDelay: '0s', animationDuration: '0.5s' }} />
-                  <div className="w-1 h-1 rounded-full bg-yellow-300/80 animate-ping" style={{ animationDelay: '0.15s', animationDuration: '0.5s' }} />
-                  <div className="w-1 h-1 rounded-full bg-orange-300/80 animate-ping" style={{ animationDelay: '0.3s', animationDuration: '0.5s' }} />
-                </div>
+              {/* Fire/Flame effect */}
+              <div className="absolute -top-1 left-1/2 -translate-x-1/2 flex items-end justify-center">
+                {/* Outer flames */}
+                <div className="w-2 h-5 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-300 rounded-full animate-pulse opacity-80" style={{ animationDuration: '0.2s', transform: 'rotate(-15deg)' }} />
+                <div className="w-3 h-7 bg-gradient-to-t from-red-500 via-orange-400 to-yellow-200 rounded-full animate-pulse mx-0.5" style={{ animationDuration: '0.15s' }} />
+                <div className="w-2 h-5 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-300 rounded-full animate-pulse opacity-80" style={{ animationDuration: '0.2s', transform: 'rotate(15deg)' }} />
               </div>
+              {/* Inner glow */}
+              <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-yellow-300/50 rounded-full blur-sm animate-pulse" style={{ animationDuration: '0.1s' }} />
             </div>
           </div>
 
@@ -259,16 +248,19 @@ const ProcessSection = () => {
                     }`}
                     style={{ transitionDelay: `${index * 200 + 100}ms` }}
                   >
-                    {/* Step Badge */}
+                    {/* Step Badge - Box style with glossy effect */}
                     <div 
-                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-primary/30 bg-primary/10 mb-4 ${
+                      className={`inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-br from-card via-card to-muted/50 border border-border/60 shadow-lg mb-4 backdrop-blur-sm ${
                         isLeft ? "" : "ml-auto"
                       }`}
+                      style={{
+                        boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.15), 0 8px 16px -8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)'
+                      }}
                     >
-                      <span className="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-xs font-bold text-primary-foreground">
+                      <span className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center text-sm font-bold text-primary-foreground shadow-md">
                         {index + 1}
                       </span>
-                      <span className="text-primary font-semibold text-sm">{step.step}</span>
+                      <span className="text-foreground font-semibold">{step.step}</span>
                     </div>
 
                     {/* Items */}
@@ -297,20 +289,13 @@ const ProcessSection = () => {
             })}
           </div>
 
-          {/* End indicator with Apply Now CTA */}
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex flex-col items-center">
-            <div className={`w-10 h-10 rounded-full border-2 border-primary bg-primary/20 flex items-center justify-center transition-all duration-500 ${
-              visibleSteps[3] ? "scale-100 opacity-100" : "scale-0 opacity-0"
-            }`}>
-              <div className="w-4 h-4 rounded-full bg-primary animate-pulse" />
-            </div>
-            
-            {/* Apply Now CTA Button */}
-            <div className={`mt-6 transition-all duration-700 ${
+          {/* Apply Now CTA Button - positioned at end */}
+          <div className="relative mt-12 flex justify-center">
+            <div className={`transition-all duration-700 ${
               rocketFinished ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90"
             }`}>
               <Link to="/contact">
-                <Button size="lg" className="gradient-bg text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow">
+                <Button size="lg" className="gradient-bg text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base">
                   Apply Now
                 </Button>
               </Link>
