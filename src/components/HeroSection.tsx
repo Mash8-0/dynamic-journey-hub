@@ -118,7 +118,7 @@ const HeroSection = () => {
             </div>
             
             {/* Floating Badge 1 - Visa Experts */}
-            <div className="absolute -top-4 right-4 animate-float z-10">
+            <div className="absolute -top-4 right-0 animate-float z-10">
               <div className="bg-card rounded-2xl px-6 py-4 shadow-card flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <Stamp className="w-5 h-5 text-primary" />
@@ -128,7 +128,7 @@ const HeroSection = () => {
             </div>
             
             {/* Floating Badge 2 - Success */}
-            <div className="absolute top-1/4 -right-4 animate-float-delayed z-10">
+            <div className="absolute top-1/3 -right-16 animate-float-delayed z-10">
               <div className="bg-card rounded-2xl px-6 py-4 shadow-card flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <Star className="w-5 h-5 text-primary" />
@@ -138,7 +138,7 @@ const HeroSection = () => {
             </div>
             
             {/* Floating Badge 3 - Study Abroad */}
-            <div className="absolute bottom-8 -right-2 animate-float delay-300 z-10">
+            <div className="absolute bottom-16 -right-8 animate-float delay-300 z-10">
               <div className="bg-card rounded-2xl px-6 py-4 shadow-card flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-primary" />
