@@ -104,8 +104,8 @@ const ProcessSection = () => {
       const newVisibleSteps = stepThresholds.slice(0, 4).map(threshold => rawProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
       
-      // Rocket smoothly follows progress - direct mapping
-      const targetPosition = rawProgress * 0.98; // Goes all the way to button
+      // Rocket smoothly follows progress - direct mapping all the way to button
+      const targetPosition = rawProgress * 1.0; // Goes all the way to button
       setRocketProgress(targetPosition);
       
       // Determine current step based on progress
@@ -118,8 +118,8 @@ const ProcessSection = () => {
       }
       setCurrentStepIndex(stepIdx);
       
-      // Rocket finishes when reaching the button
-      setRocketFinished(rawProgress >= 0.95);
+      // Rocket only vanishes after fully reaching the button (at 100%)
+      setRocketFinished(rawProgress >= 0.99);
     };
 
     window.addEventListener("scroll", handleScroll);
