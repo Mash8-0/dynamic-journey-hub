@@ -254,14 +254,25 @@ const ProcessSection = () => {
               return (
                 <div
                   key={step.step}
-                  className={`relative flex items-center ${isLeft ? "justify-start" : "justify-end"}`}
+                  className={`relative flex ${isLeft ? "justify-start" : "justify-end"}`}
                 >
-                  {/* Connection Line with drawing animation */}
+                  {/* Step Node on Timeline - Center point */}
                   <div 
-                    className={`absolute top-6 h-0.5 w-12 md:w-20 overflow-hidden ${
+                    className={`absolute left-1/2 top-7 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-r ${step.color} z-10 transition-all duration-500 shadow-lg ${
+                      isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                    }`}
+                    style={{ 
+                      transitionDelay: `${index * 150}ms`,
+                      boxShadow: `0 0 12px hsl(var(--primary) / 0.4)`,
+                    }}
+                  />
+
+                  {/* Connection Line with drawing animation - from center to card */}
+                  <div 
+                    className={`absolute top-7 -translate-y-1/2 h-[2px] overflow-hidden ${
                       isLeft 
-                        ? "right-1/2" 
-                        : "left-1/2"
+                        ? "right-[50%] w-[calc(50%-3rem)] md:w-[calc(50%-4rem)]" 
+                        : "left-[50%] w-[calc(50%-3rem)] md:w-[calc(50%-4rem)]"
                     }`}
                   >
                     {/* Base line */}
@@ -272,45 +283,21 @@ const ProcessSection = () => {
                       style={{ 
                         transformOrigin: isLeft ? "right" : "left",
                         transitionDelay: `${index * 150}ms`,
-                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, hsl(var(--primary)), hsl(var(--primary) / 0.3))`,
+                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, hsl(var(--primary) / 0.8), hsl(var(--primary) / 0.2))`,
                       }}
                     />
                     {/* Animated glow traveling along the line */}
                     <div 
-                      className={`absolute inset-y-0 w-8 transition-opacity duration-500 ${
+                      className={`absolute inset-y-0 w-10 transition-opacity duration-500 ${
                         isVisible ? "opacity-100" : "opacity-0"
                       }`}
                       style={{ 
                         background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, transparent, hsl(var(--primary)), transparent)`,
-                        animation: isVisible ? `${isLeft ? 'drawLineLeft' : 'drawLineRight'} 1.5s ease-out ${index * 150 + 200}ms forwards` : 'none',
-                        filter: 'blur(2px)',
+                        animation: isVisible ? `${isLeft ? 'drawLineLeft' : 'drawLineRight'} 1.2s ease-out ${index * 150 + 100}ms forwards` : 'none',
+                        filter: 'blur(1px)',
                       }}
                     />
                   </div>
-
-                  {/* Decorative dot at end of line */}
-                  <div 
-                    className={`absolute top-6 w-2.5 h-2.5 rounded-full bg-gradient-to-r ${step.color} transition-all duration-500 ${
-                      isLeft 
-                        ? "right-[calc(50%+3rem)] md:right-[calc(50%+5rem)]" 
-                        : "left-[calc(50%+3rem)] md:left-[calc(50%+5rem)]"
-                    } ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
-                    style={{ 
-                      transitionDelay: `${index * 150 + 100}ms`,
-                      boxShadow: `0 0 10px hsl(var(--primary) / 0.5)`,
-                    }}
-                  />
-
-                  {/* Step Node on Timeline - Colorful */}
-                  <div 
-                    className={`absolute left-1/2 top-6 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r ${step.color} z-10 transition-all duration-500 shadow-lg ${
-                      isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                    }`}
-                    style={{ 
-                      transitionDelay: `${index * 150}ms`,
-                      boxShadow: `0 0 15px hsl(var(--primary) / 0.4)`,
-                    }}
-                  />
 
                   {/* Card */}
                   <div
