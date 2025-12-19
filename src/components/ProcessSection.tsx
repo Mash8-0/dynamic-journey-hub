@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Rocket, Sparkles, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon } from "lucide-react";
+import { Rocket, Sparkles, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -11,11 +11,13 @@ interface StepItem {
 interface Step {
   step: string;
   items: StepItem[];
+  color: string;
 }
 
 const steps: Step[] = [
   {
     step: "Step 1",
+    color: "from-violet-500 to-purple-600",
     items: [
       { text: "Free Consultation", icon: MessageCircle },
       { text: "University & Course Selection", icon: GraduationCap },
@@ -23,6 +25,7 @@ const steps: Step[] = [
   },
   {
     step: "Step 2",
+    color: "from-blue-500 to-cyan-500",
     items: [
       { text: "Apply", icon: FileText },
       { text: "Offer Letter", icon: Mail },
@@ -31,6 +34,7 @@ const steps: Step[] = [
   },
   {
     step: "Step 3",
+    color: "from-emerald-500 to-teal-500",
     items: [
       { text: "Payment EMGS", icon: CreditCard },
       { text: "EMGS Online", icon: Globe },
@@ -40,6 +44,7 @@ const steps: Step[] = [
   },
   {
     step: "Step 4",
+    color: "from-amber-500 to-orange-500",
     items: [
       { text: "Arrival Follow-up", icon: Plane },
       { text: "Airport Pickup", icon: Car },
@@ -52,11 +57,11 @@ const steps: Step[] = [
 const generateParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
-    left: Math.random() * 60 + 20,
+    left: Math.random() * 80 + 10,
     delay: Math.random() * 2,
-    duration: 1 + Math.random() * 2,
-    size: 2 + Math.random() * 4,
-    type: Math.random() > 0.5 ? 'star' : 'dot',
+    duration: 0.5 + Math.random() * 1.5,
+    size: 3 + Math.random() * 6,
+    type: Math.random() > 0.3 ? 'star' : 'spark',
   }));
 };
 
@@ -65,7 +70,7 @@ const ProcessSection = () => {
   const [visibleSteps, setVisibleSteps] = useState<boolean[]>([false, false, false, false]);
   const [rocketProgress, setRocketProgress] = useState(0);
   const [rocketFinished, setRocketFinished] = useState(false);
-  const particles = useMemo(() => generateParticles(20), []);
+  const particles = useMemo(() => generateParticles(30), []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,7 +86,7 @@ const ProcessSection = () => {
       setRocketProgress(scrollProgress);
       
       // Rocket vanishes when reaching the CTA button
-      setRocketFinished(scrollProgress >= 0.98);
+      setRocketFinished(scrollProgress >= 0.95);
 
       const stepThresholds = [0.15, 0.35, 0.55, 0.75];
       const newVisibleSteps = stepThresholds.map(threshold => scrollProgress >= threshold);
@@ -95,59 +100,83 @@ const ProcessSection = () => {
   }, []);
 
   return (
-    <section id="processing" className="py-20 lg:py-32 bg-secondary/50" ref={sectionRef}>
-      <div className="container mx-auto px-4">
+    <section id="processing" className="py-20 lg:py-32 bg-gradient-to-b from-background via-secondary/30 to-background relative overflow-hidden" ref={sectionRef}>
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-violet-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-            Our <span className="gradient-text">Process</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <Rocket className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">Your Journey Starts Here</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
+            Our <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Process</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             A simple 4-step journey to your dream destination
           </p>
         </div>
 
         {/* Vertical Timeline */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Dotted Vertical Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2">
-            <div className="w-full h-full border-l-2 border-dashed border-primary/40" />
+          {/* Gradient Vertical Line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2">
+            <div className="w-full h-full bg-gradient-to-b from-violet-500/20 via-cyan-500/20 via-emerald-500/20 to-amber-500/20 rounded-full" />
           </div>
 
+          {/* Rocket Trail - Colorful gradient */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 w-2 transition-all duration-300 ease-out z-10 rounded-full"
+            style={{
+              top: '0%',
+              height: `${Math.min(rocketProgress * 95, 95)}%`,
+              background: 'linear-gradient(to bottom, hsl(270 60% 60% / 0.2) 0%, hsl(200 80% 55% / 0.4) 30%, hsl(160 70% 50% / 0.5) 60%, hsl(35 90% 55% / 0.6) 100%)',
+              boxShadow: '0 0 20px hsl(270 60% 60% / 0.3)',
+            }}
+          />
+
           {/* Particle Effects / Stars */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-32 h-full pointer-events-none overflow-hidden">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-48 h-full pointer-events-none overflow-hidden">
             {particles.map((particle) => {
-              const particleTop = rocketProgress * 100;
+              const particleTop = rocketProgress * 95;
               const isVisible = particleTop > 5 && !rocketFinished;
               
               return (
                 <div
                   key={particle.id}
-                  className={`absolute transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                  className={`absolute transition-all duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                   style={{
                     left: `${particle.left}%`,
-                    top: `${Math.max(0, particleTop - 15 - particle.delay * 8)}%`,
+                    top: `${Math.max(0, particleTop - 10 - particle.delay * 5)}%`,
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
                   {particle.type === 'star' ? (
-                    <Sparkles 
-                      className="text-primary animate-pulse" 
-                      style={{ 
-                        width: particle.size * 2,
-                        height: particle.size * 2,
-                        animationDelay: `${particle.delay}s`,
-                        animationDuration: `${particle.duration}s`,
-                      }}
-                    />
-                  ) : (
-                    <div 
-                      className="rounded-full bg-primary/60 animate-ping"
+                    <Star 
+                      className="text-amber-400 fill-amber-400 animate-pulse" 
                       style={{ 
                         width: particle.size,
                         height: particle.size,
                         animationDelay: `${particle.delay}s`,
-                        animationDuration: `${particle.duration + 1}s`,
+                        animationDuration: `${particle.duration}s`,
+                        filter: 'drop-shadow(0 0 4px hsl(45 95% 60%))',
+                      }}
+                    />
+                  ) : (
+                    <div 
+                      className="rounded-full animate-ping"
+                      style={{ 
+                        width: particle.size,
+                        height: particle.size,
+                        background: `linear-gradient(135deg, hsl(${Math.random() * 60 + 20} 90% 60%), hsl(${Math.random() * 60 + 280} 80% 65%))`,
+                        animationDelay: `${particle.delay}s`,
+                        animationDuration: `${particle.duration + 0.5}s`,
                       }}
                     />
                   )}
@@ -156,47 +185,48 @@ const ProcessSection = () => {
             })}
           </div>
 
-          {/* Glowing trail behind rocket */}
-          <div 
-            className="absolute left-1/2 -translate-x-1/2 w-4 transition-all duration-300 ease-out z-10"
-            style={{
-              top: '0%',
-              height: `${Math.min(rocketProgress * 100, 100)}%`,
-              background: 'linear-gradient(to bottom, transparent 0%, hsl(var(--primary) / 0.1) 30%, hsl(var(--primary) / 0.3) 70%, hsl(var(--primary) / 0.6) 100%)',
-              filter: 'blur(4px)',
-            }}
-          />
-
           {/* Animated Rocket */}
           <div 
             className={`absolute left-1/2 -translate-x-1/2 z-20 transition-all duration-500 ease-out ${
-              rocketFinished ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+              rocketFinished ? 'opacity-0 scale-0 rotate-45' : 'opacity-100 scale-100 rotate-0'
             }`}
             style={{ 
-              top: `${Math.min(rocketProgress * 100, 100)}%`,
+              top: `${Math.min(rocketProgress * 95, 95)}%`,
             }}
           >
             <div className="relative">
-              {/* Rocket glow effect */}
-              <div className="absolute inset-0 w-14 h-14 -m-1 rounded-full bg-primary/20 animate-pulse" />
-              <div className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center shadow-lg animate-pulse-glow">
-                <Rocket className="w-6 h-6 text-primary-foreground rotate-[135deg]" />
+              {/* Outer glow rings */}
+              <div className="absolute inset-0 w-20 h-20 -m-4 rounded-full bg-gradient-to-r from-violet-500/30 to-cyan-500/30 animate-ping" style={{ animationDuration: '2s' }} />
+              <div className="absolute inset-0 w-16 h-16 -m-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 animate-pulse" />
+              
+              {/* Rocket body */}
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 flex items-center justify-center shadow-2xl border-2 border-white/20">
+                <Rocket className="w-7 h-7 text-white rotate-[135deg] drop-shadow-lg" />
               </div>
               
-              {/* Fire/Flame effect */}
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 flex items-end justify-center">
-                {/* Outer flames */}
-                <div className="w-2 h-5 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-300 rounded-full animate-pulse opacity-80" style={{ animationDuration: '0.2s', transform: 'rotate(-15deg)' }} />
-                <div className="w-3 h-7 bg-gradient-to-t from-red-500 via-orange-400 to-yellow-200 rounded-full animate-pulse mx-0.5" style={{ animationDuration: '0.15s' }} />
-                <div className="w-2 h-5 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-300 rounded-full animate-pulse opacity-80" style={{ animationDuration: '0.2s', transform: 'rotate(15deg)' }} />
+              {/* Fire/Flame effect - More realistic */}
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex items-end justify-center gap-0.5">
+                {/* Core flame */}
+                <div className="w-2 h-6 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-300 rounded-full animate-pulse opacity-90" 
+                  style={{ animationDuration: '0.15s', transform: 'rotate(-12deg)', filter: 'blur(0.5px)' }} />
+                <div className="w-3.5 h-9 bg-gradient-to-t from-red-500 via-orange-400 to-yellow-200 rounded-full animate-pulse" 
+                  style={{ animationDuration: '0.1s', filter: 'blur(0.3px)' }} />
+                <div className="w-2 h-6 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-300 rounded-full animate-pulse opacity-90" 
+                  style={{ animationDuration: '0.15s', transform: 'rotate(12deg)', filter: 'blur(0.5px)' }} />
               </div>
-              {/* Inner glow */}
-              <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-yellow-300/50 rounded-full blur-sm animate-pulse" style={{ animationDuration: '0.1s' }} />
+              
+              {/* Inner hot core */}
+              <div className="absolute -top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-gradient-to-t from-yellow-400 to-white rounded-full blur-sm animate-pulse" 
+                style={{ animationDuration: '0.08s' }} />
+              
+              {/* Smoke trail */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-white/10 rounded-full blur-md animate-pulse" 
+                style={{ animationDuration: '0.3s' }} />
             </div>
           </div>
 
           {/* Steps */}
-          <div className="relative space-y-16 py-8">
+          <div className="relative space-y-20 py-8">
             {steps.map((step, index) => {
               const isLeft = index % 2 === 0;
               const isVisible = visibleSteps[index];
@@ -206,35 +236,44 @@ const ProcessSection = () => {
                   key={step.step}
                   className={`relative flex items-center ${isLeft ? "justify-start" : "justify-end"}`}
                 >
-                  {/* Connection Line - goes to OPPOSITE side of card */}
+                  {/* Connection Line with gradient */}
                   <div 
-                    className={`absolute top-1/2 h-0.5 w-16 md:w-24 -translate-y-1/2 transition-all duration-500 ${
+                    className={`absolute top-1/2 h-0.5 w-16 md:w-24 -translate-y-1/2 transition-all duration-700 ${
                       isLeft 
-                        ? "right-1/2 bg-gradient-to-l from-primary to-primary/30" 
-                        : "left-1/2 bg-gradient-to-r from-primary to-primary/30"
+                        ? "right-1/2" 
+                        : "left-1/2"
                     } ${isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"}`}
                     style={{ 
                       transformOrigin: isLeft ? "right" : "left",
-                      transitionDelay: `${index * 150}ms`
+                      transitionDelay: `${index * 150}ms`,
+                      background: isLeft 
+                        ? `linear-gradient(to left, hsl(var(--primary)), transparent)`
+                        : `linear-gradient(to right, hsl(var(--primary)), transparent)`,
                     }}
                   />
 
-                  {/* Circle indicator at end of line - OPPOSITE side of card */}
+                  {/* Decorative dot at end of line */}
                   <div 
-                    className={`absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-primary/60 bg-background transition-all duration-500 ${
+                    className={`absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-gradient-to-r ${step.color} transition-all duration-500 ${
                       isLeft 
                         ? "right-[calc(50%+4rem)] md:right-[calc(50%+6rem)]" 
                         : "left-[calc(50%+4rem)] md:left-[calc(50%+6rem)]"
                     } ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
-                    style={{ transitionDelay: `${index * 150 + 100}ms` }}
+                    style={{ 
+                      transitionDelay: `${index * 150 + 100}ms`,
+                      boxShadow: `0 0 10px hsl(var(--primary) / 0.5)`,
+                    }}
                   />
 
-                  {/* Step Node on Timeline */}
+                  {/* Step Node on Timeline - Colorful */}
                   <div 
-                    className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-primary bg-background z-10 transition-all duration-500 ${
+                    className={`absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r ${step.color} z-10 transition-all duration-500 shadow-lg ${
                       isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
                     }`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
+                    style={{ 
+                      transitionDelay: `${index * 150}ms`,
+                      boxShadow: `0 0 15px hsl(var(--primary) / 0.4)`,
+                    }}
                   />
 
                   {/* Card */}
@@ -243,42 +282,42 @@ const ProcessSection = () => {
                       isVisible 
                         ? "opacity-100 translate-x-0" 
                         : isLeft 
-                          ? "opacity-0 -translate-x-12" 
-                          : "opacity-0 translate-x-12"
+                          ? "opacity-0 -translate-x-16" 
+                          : "opacity-0 translate-x-16"
                     }`}
                     style={{ transitionDelay: `${index * 200 + 100}ms` }}
                   >
-                    {/* Step Badge - Box style with glossy effect */}
+                    {/* Step Badge - Glossy glass effect */}
                     <div 
-                      className={`inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-br from-card via-card to-muted/50 border border-border/60 shadow-lg mb-4 backdrop-blur-sm ${
+                      className={`inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-muted/60 border border-border/40 backdrop-blur-xl mb-4 group hover:scale-105 transition-all duration-300 ${
                         isLeft ? "" : "ml-auto"
                       }`}
                       style={{
-                        boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.15), 0 8px 16px -8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)'
+                        boxShadow: '0 8px 32px -8px hsl(var(--primary) / 0.2), 0 4px 16px -4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.05)'
                       }}
                     >
-                      <span className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center text-sm font-bold text-primary-foreground shadow-md">
+                      <span className={`w-9 h-9 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-sm font-bold text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                         {index + 1}
                       </span>
-                      <span className="text-foreground font-semibold">{step.step}</span>
+                      <span className="text-foreground font-semibold text-lg">{step.step}</span>
                     </div>
 
                     {/* Items */}
-                    <div className={`space-y-2 ${isLeft ? "" : "text-right"}`}>
+                    <div className={`space-y-3 ${isLeft ? "" : "text-right"}`}>
                       {step.items.map((item, itemIndex) => {
                         const ItemIcon = item.icon;
                         return (
                           <div
                             key={item.text}
-                            className={`flex items-center gap-3 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 cursor-pointer transition-all duration-300 ${
+                            className={`flex items-center gap-3 p-4 rounded-xl bg-card/60 backdrop-blur-sm border border-border/40 shadow-sm hover:shadow-xl hover:border-primary/40 hover:-translate-y-1.5 hover:bg-card/90 cursor-pointer transition-all duration-300 group ${
                               isLeft ? "flex-row" : "flex-row-reverse"
-                            } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                            } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
                             style={{ transitionDelay: `${index * 200 + itemIndex * 100 + 200}ms` }}
                           >
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                              <ItemIcon className="w-4 h-4 text-primary" />
+                            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shrink-0 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                              <ItemIcon className="w-5 h-5 text-white" />
                             </div>
-                            <span className="text-sm text-foreground">{item.text}</span>
+                            <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.text}</span>
                           </div>
                         );
                       })}
@@ -289,24 +328,37 @@ const ProcessSection = () => {
             })}
           </div>
 
-          {/* Apply Now CTA Button - positioned at end */}
-          <div className="relative mt-12 flex justify-center">
-            <div className={`transition-all duration-700 ${
-              rocketFinished ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90"
+          {/* Apply Now CTA Button - Celebration effect */}
+          <div className="relative mt-16 flex justify-center">
+            <div className={`transition-all duration-1000 ${
+              rocketFinished ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-75"
             }`}>
-              {/* Glow ring effect */}
+              {/* Celebration burst rings */}
               {rocketFinished && (
-                <div className="absolute inset-0 -m-2 rounded-xl bg-primary/30 animate-ping" style={{ animationDuration: '1.5s' }} />
+                <>
+                  <div className="absolute inset-0 -m-6 rounded-full bg-gradient-to-r from-violet-500/30 via-cyan-500/30 to-amber-500/30 animate-ping" style={{ animationDuration: '2s' }} />
+                  <div className="absolute inset-0 -m-4 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 animate-pulse" style={{ animationDuration: '1.5s' }} />
+                  
+                  {/* Sparkle decorations */}
+                  <Sparkles className="absolute -top-6 -left-6 w-5 h-5 text-amber-400 animate-bounce" style={{ animationDelay: '0.2s' }} />
+                  <Sparkles className="absolute -top-4 -right-8 w-4 h-4 text-violet-400 animate-bounce" style={{ animationDelay: '0.4s' }} />
+                  <Star className="absolute -bottom-4 -left-8 w-4 h-4 text-cyan-400 fill-cyan-400 animate-bounce" style={{ animationDelay: '0.3s' }} />
+                  <Star className="absolute -bottom-6 -right-6 w-5 h-5 text-pink-400 fill-pink-400 animate-bounce" style={{ animationDelay: '0.5s' }} />
+                </>
               )}
-              <div className={`relative ${rocketFinished ? 'animate-pulse' : ''}`} style={{ animationDuration: '2s' }}>
+              
+              <div className={`relative ${rocketFinished ? 'animate-bounce' : ''}`} style={{ animationDuration: '2s' }}>
                 <Link to="/contact">
                   <Button 
                     size="lg" 
-                    className="gradient-bg text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base"
+                    className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold shadow-2xl hover:shadow-violet-500/30 transition-all duration-500 px-10 py-7 text-lg rounded-2xl border border-white/20"
                     style={{
-                      boxShadow: rocketFinished ? '0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.3)' : undefined
+                      boxShadow: rocketFinished 
+                        ? '0 0 40px hsl(270 60% 55% / 0.5), 0 0 80px hsl(280 70% 60% / 0.3), 0 10px 40px -10px rgba(0,0,0,0.3)' 
+                        : '0 10px 40px -10px rgba(0,0,0,0.3)'
                     }}
                   >
+                    <Rocket className="w-5 h-5 mr-2" />
                     Apply Now
                   </Button>
                 </Link>
