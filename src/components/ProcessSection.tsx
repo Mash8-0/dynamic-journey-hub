@@ -424,12 +424,10 @@ const ProcessSection = () => {
             })}
           </div>
 
-          {/* Apply Now CTA Button - Celebration effect */}
+          {/* Apply Now CTA Button - Always visible with celebration effect when rocket arrives */}
           <div className="relative mt-16 flex justify-center">
-            <div className={`transition-all duration-1000 ${
-              rocketFinished ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-75"
-            }`}>
-              {/* Celebration burst rings */}
+            <div className="transition-all duration-1000">
+              {/* Celebration burst rings - only when rocket finishes */}
               {rocketFinished && (
                 <>
                   <div className="absolute inset-0 -m-6 rounded-full bg-gradient-to-r from-violet-500/30 via-cyan-500/30 to-amber-500/30 animate-ping" style={{ animationDuration: '2s' }} />
