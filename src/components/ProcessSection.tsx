@@ -81,16 +81,30 @@ const ProcessSection = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const particles = useMemo(() => generateParticles(30), []);
 
-  // Function to create pause effect at step milestones
-  const applyStepPause = (progress: number, thresholds: number[], pauseRange: number = 0.03) => {
-    for (const threshold of thresholds) {
-      const distanceToThreshold = Math.abs(progress - threshold);
-      if (distanceToThreshold < pauseRange) {
-        // Create a "sticky" effect near the threshold
-        return threshold;
+  // Step positions where the rocket should stop (mapped to visual positions)
+  const stepPositions = [0, 0.18, 0.40, 0.62, 0.85]; // Start, Step1, Step2, Step3, Step4
+  const scrollTriggers = [0, 0.15, 0.35, 0.55, 0.75]; // Scroll progress to trigger each position
+
+  // Function to create stepped movement with stops at each milestone
+  const getSteppedProgress = (rawProgress: number) => {
+    // Find which segment we're in
+    for (let i = scrollTriggers.length - 1; i >= 0; i--) {
+      if (rawProgress >= scrollTriggers[i]) {
+        // Calculate progress within this segment
+        const segmentStart = scrollTriggers[i];
+        const segmentEnd = scrollTriggers[i + 1] || 1;
+        const positionStart = stepPositions[i];
+        const positionEnd = stepPositions[i + 1] || 0.95;
+        
+        const segmentProgress = (rawProgress - segmentStart) / (segmentEnd - segmentStart);
+        
+        // Ease out function for smooth deceleration when approaching stop
+        const easedProgress = 1 - Math.pow(1 - Math.min(segmentProgress, 1), 3);
+        
+        return positionStart + (positionEnd - positionStart) * easedProgress;
       }
     }
-    return progress;
+    return 0;
   };
 
   useEffect(() => {
@@ -105,15 +119,14 @@ const ProcessSection = () => {
 
       const rawProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 1.2)));
       
-      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
-      
-      // Apply pause effect at milestones
-      const pausedProgress = applyStepPause(rawProgress, stepThresholds, 0.025);
-      setRocketProgress(pausedProgress);
+      // Apply stepped movement with stops
+      const steppedProgress = getSteppedProgress(rawProgress);
+      setRocketProgress(steppedProgress);
       
       // Rocket vanishes when reaching the CTA button
       setRocketFinished(rawProgress >= 0.95);
 
+      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
       const newVisibleSteps = stepThresholds.map(threshold => rawProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
       
