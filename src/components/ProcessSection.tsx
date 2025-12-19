@@ -1,24 +1,50 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Rocket, Sparkles, Flame } from "lucide-react";
+import { Rocket, Sparkles, Flame, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const steps = [
+interface StepItem {
+  text: string;
+  icon: LucideIcon;
+}
+
+interface Step {
+  step: string;
+  items: StepItem[];
+}
+
+const steps: Step[] = [
   {
     step: "Step 1",
-    items: ["Free Consultation", "University & Course Selection"],
+    items: [
+      { text: "Free Consultation", icon: MessageCircle },
+      { text: "University & Course Selection", icon: GraduationCap },
+    ],
   },
   {
     step: "Step 2",
-    items: ["Apply", "Offer Letter", "Proceed for EMGS"],
+    items: [
+      { text: "Apply", icon: FileText },
+      { text: "Offer Letter", icon: Mail },
+      { text: "Proceed for EMGS", icon: Shield },
+    ],
   },
   {
     step: "Step 3",
-    items: ["Payment EMGS", "EMGS Online", "EMGS Approval", "eVAL"],
+    items: [
+      { text: "Payment EMGS", icon: CreditCard },
+      { text: "EMGS Online", icon: Globe },
+      { text: "EMGS Approval", icon: CheckCircle },
+      { text: "eVAL", icon: FileCheck },
+    ],
   },
   {
     step: "Step 4",
-    items: ["Arrival Follow-up", "Airport Pickup", "Accommodation"],
+    items: [
+      { text: "Arrival Follow-up", icon: Plane },
+      { text: "Airport Pickup", icon: Car },
+      { text: "Accommodation", icon: Home },
+    ],
   },
 ];
 
@@ -247,18 +273,23 @@ const ProcessSection = () => {
 
                     {/* Items */}
                     <div className={`space-y-2 ${isLeft ? "" : "text-right"}`}>
-                      {step.items.map((item, itemIndex) => (
-                        <div
-                          key={item}
-                          className={`flex items-center gap-3 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 ${
-                            isLeft ? "flex-row" : "flex-row-reverse"
-                          } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-                          style={{ transitionDelay: `${index * 200 + itemIndex * 100 + 200}ms` }}
-                        >
-                          <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
-                          <span className="text-sm text-foreground">{item}</span>
-                        </div>
-                      ))}
+                      {step.items.map((item, itemIndex) => {
+                        const ItemIcon = item.icon;
+                        return (
+                          <div
+                            key={item.text}
+                            className={`flex items-center gap-3 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 ${
+                              isLeft ? "flex-row" : "flex-row-reverse"
+                            } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                            style={{ transitionDelay: `${index * 200 + itemIndex * 100 + 200}ms` }}
+                          >
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                              <ItemIcon className="w-4 h-4 text-primary" />
+                            </div>
+                            <span className="text-sm text-foreground">{item.text}</span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
