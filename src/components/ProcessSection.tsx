@@ -145,38 +145,19 @@ const ProcessSection = () => {
 
         {/* Vertical Timeline */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Background Track Line - Static */}
+          {/* Gradient Vertical Line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2">
-            <div className="w-full h-full bg-border/30 rounded-full" />
+            <div className="w-full h-full bg-gradient-to-b from-violet-500/20 via-cyan-500/20 via-emerald-500/20 to-amber-500/20 rounded-full" />
           </div>
 
-          {/* Animated Progress Line - Fills as rocket moves */}
+          {/* Rocket Trail - Colorful gradient */}
           <div 
-            className="absolute left-1/2 top-0 w-1 -translate-x-1/2 rounded-full transition-all duration-500 ease-out"
-            style={{
-              height: `${Math.min(rocketProgress * 95, 95)}%`,
-              background: 'linear-gradient(to bottom, hsl(270 70% 60%) 0%, hsl(220 80% 55%) 25%, hsl(170 70% 50%) 50%, hsl(45 90% 55%) 75%, hsl(25 85% 55%) 100%)',
-            }}
-          />
-
-          {/* Glowing Trail Effect */}
-          <div 
-            className="absolute left-1/2 -translate-x-1/2 w-3 rounded-full transition-all duration-300 ease-out z-10 blur-sm"
+            className="absolute left-1/2 -translate-x-1/2 w-2 transition-all duration-300 ease-out z-10 rounded-full"
             style={{
               top: '0%',
               height: `${Math.min(rocketProgress * 95, 95)}%`,
-              background: 'linear-gradient(to bottom, hsl(270 70% 60% / 0.3) 0%, hsl(220 80% 55% / 0.4) 25%, hsl(170 70% 50% / 0.5) 50%, hsl(45 90% 55% / 0.6) 75%, hsl(25 85% 55% / 0.7) 100%)',
-            }}
-          />
-
-          {/* Pulsing glow at current position */}
-          <div 
-            className={`absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full transition-all duration-300 ${rocketFinished ? 'opacity-0' : 'opacity-100'}`}
-            style={{
-              top: `${Math.min(rocketProgress * 95, 95)}%`,
-              background: 'radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)',
-              transform: 'translate(-50%, -50%)',
-              filter: 'blur(4px)',
+              background: 'linear-gradient(to bottom, hsl(270 60% 60% / 0.2) 0%, hsl(200 80% 55% / 0.4) 30%, hsl(160 70% 50% / 0.5) 60%, hsl(35 90% 55% / 0.6) 100%)',
+              boxShadow: '0 0 20px hsl(270 60% 60% / 0.3)',
             }}
           />
 
