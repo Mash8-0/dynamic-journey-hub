@@ -98,8 +98,8 @@ const HeroSection = () => {
           {/* Right Content - Floating Badges */}
           <div className="relative h-[400px] lg:h-[500px] hidden lg:block">
             {/* Decorative circles - Behind badges */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-2 border-dashed border-primary/20 z-0" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-primary/10 z-0" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-2 border-dashed border-primary/20 z-0 animate-spin-slow" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-primary/10 z-0 animate-spin-slow-reverse" />
             
             {/* Floating Badge 1 */}
             <div className="absolute top-0 right-20 animate-float z-10">
