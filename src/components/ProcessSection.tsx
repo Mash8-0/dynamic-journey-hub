@@ -256,9 +256,9 @@ const ProcessSection = () => {
                   key={step.step}
                   className={`relative flex items-center ${isLeft ? "justify-start" : "justify-end"}`}
                 >
-                  {/* Connection Line with gradient */}
+                  {/* Connection Line with gradient - aligned with step badge */}
                   <div 
-                    className={`absolute top-1/2 h-0.5 w-16 md:w-24 -translate-y-1/2 transition-all duration-700 ${
+                    className={`absolute top-6 h-0.5 w-12 md:w-20 transition-all duration-700 ${
                       isLeft 
                         ? "right-1/2" 
                         : "left-1/2"
@@ -274,10 +274,10 @@ const ProcessSection = () => {
 
                   {/* Decorative dot at end of line */}
                   <div 
-                    className={`absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-gradient-to-r ${step.color} transition-all duration-500 ${
+                    className={`absolute top-6 w-2.5 h-2.5 rounded-full bg-gradient-to-r ${step.color} transition-all duration-500 ${
                       isLeft 
-                        ? "right-[calc(50%+4rem)] md:right-[calc(50%+6rem)]" 
-                        : "left-[calc(50%+4rem)] md:left-[calc(50%+6rem)]"
+                        ? "right-[calc(50%+3rem)] md:right-[calc(50%+5rem)]" 
+                        : "left-[calc(50%+3rem)] md:left-[calc(50%+5rem)]"
                     } ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
                     style={{ 
                       transitionDelay: `${index * 150 + 100}ms`,
@@ -287,7 +287,7 @@ const ProcessSection = () => {
 
                   {/* Step Node on Timeline - Colorful */}
                   <div 
-                    className={`absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r ${step.color} z-10 transition-all duration-500 shadow-lg ${
+                    className={`absolute left-1/2 top-6 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r ${step.color} z-10 transition-all duration-500 shadow-lg ${
                       isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
                     }`}
                     style={{ 
