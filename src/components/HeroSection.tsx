@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Stamp, GraduationCap, Star } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import graduateGirl from "@/assets/graduate-girl.png";
+import graduateBoy from "@/assets/graduate-boy.png";
 
 const CountUp = ({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -97,9 +99,23 @@ const HeroSection = () => {
           
           {/* Right Content - Floating Badges */}
           <div className="relative h-[400px] lg:h-[500px] hidden lg:block">
-            {/* Decorative circles - Behind badges */}
+            {/* Decorative circles - Behind everything */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-2 border-dashed border-primary/20 z-0 animate-spin-slow" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-primary/10 z-0 animate-spin-slow-reverse" />
+            
+            {/* Graduate Images - Centered in circles */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] flex items-center justify-center gap-2">
+              <img 
+                src={graduateGirl} 
+                alt="Female graduate student" 
+                className="w-28 h-36 object-cover object-top rounded-2xl shadow-lg border-2 border-white/50 -rotate-6 hover:rotate-0 transition-transform duration-300"
+              />
+              <img 
+                src={graduateBoy} 
+                alt="Male graduate student" 
+                className="w-28 h-36 object-cover object-top rounded-2xl shadow-lg border-2 border-white/50 rotate-6 hover:rotate-0 transition-transform duration-300 -ml-4"
+              />
+            </div>
             
             {/* Floating Badge 1 */}
             <div className="absolute top-0 right-20 animate-float z-10">
