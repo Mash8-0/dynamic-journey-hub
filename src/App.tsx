@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Universities from "./pages/Universities";
+import UniversityDetail from "./pages/UniversityDetail";
 import Services from "./pages/Services";
 import Processing from "./pages/Processing";
 import SuccessStory from "./pages/SuccessStory";
@@ -26,6 +27,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/universities" element={<Universities />} />
+          <Route path="/universities/:id" element={<UniversityDetail />} />
           <Route path="/services" element={<Services />} />
           <Route path="/processing" element={<Processing />} />
           <Route path="/success-story" element={<SuccessStory />} />
