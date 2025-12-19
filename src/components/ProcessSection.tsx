@@ -101,11 +101,31 @@ const ProcessSection = () => {
 
   return (
     <section id="processing" className="py-20 lg:py-32 bg-gradient-to-b from-background via-secondary/30 to-background relative overflow-hidden" ref={sectionRef}>
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-violet-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-40 right-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-3xl" />
+      {/* Floating animated background shapes */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large floating blobs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-violet-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-40 right-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+        
+        {/* Floating geometric shapes */}
+        <div className="absolute top-[15%] left-[8%] w-4 h-4 border-2 border-violet-400/20 rounded-full animate-float" style={{ animationDuration: '6s' }} />
+        <div className="absolute top-[25%] right-[12%] w-6 h-6 border-2 border-cyan-400/20 rotate-45 animate-float" style={{ animationDuration: '7s', animationDelay: '0.5s' }} />
+        <div className="absolute top-[40%] left-[5%] w-3 h-3 bg-emerald-400/15 rounded-full animate-float" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+        <div className="absolute top-[55%] right-[8%] w-5 h-5 border-2 border-amber-400/20 rounded-lg rotate-12 animate-float" style={{ animationDuration: '8s', animationDelay: '0.3s' }} />
+        <div className="absolute top-[70%] left-[10%] w-4 h-4 bg-pink-400/10 rotate-45 animate-float" style={{ animationDuration: '6s', animationDelay: '1.5s' }} />
+        <div className="absolute top-[80%] right-[15%] w-3 h-3 border-2 border-purple-400/20 rounded-full animate-float" style={{ animationDuration: '7s', animationDelay: '0.8s' }} />
+        
+        {/* Additional floating elements on both sides */}
+        <div className="absolute top-[10%] left-[20%] w-2 h-2 bg-violet-300/20 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+        <div className="absolute top-[35%] right-[20%] w-2 h-2 bg-cyan-300/20 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+        <div className="absolute top-[60%] left-[15%] w-2 h-2 bg-emerald-300/20 rounded-full animate-ping" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }} />
+        <div className="absolute top-[85%] right-[10%] w-2 h-2 bg-amber-300/20 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1.5s' }} />
+        
+        {/* Drifting lines */}
+        <div className="absolute top-[20%] left-[3%] w-16 h-0.5 bg-gradient-to-r from-transparent via-violet-400/10 to-transparent rotate-45 animate-float" style={{ animationDuration: '9s' }} />
+        <div className="absolute top-[50%] right-[5%] w-20 h-0.5 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent -rotate-12 animate-float" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+        <div className="absolute top-[75%] left-[7%] w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent rotate-12 animate-float" style={{ animationDuration: '8s', animationDelay: '1s' }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
