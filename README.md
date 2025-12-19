@@ -1,73 +1,108 @@
-# Welcome to your Lovable project
+# Global Consultancy - Study Abroad Services
 
-## Project info
+A modern, responsive web application for a study abroad consultancy service helping students pursue international education opportunities.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🌍 Features
 
-## How can I edit this code?
+- **Hero Section** - Eye-catching landing with graduate imagery and key statistics
+- **Services Overview** - Comprehensive list of consultancy services
+- **University Partners** - Showcase of partner universities worldwide
+- **Success Stories** - Testimonials and student success cases
+- **Process Guide** - Step-by-step application journey
+- **Contact Form** - Easy inquiry submission with email notifications
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Build Tool**: Vite
+- **Backend**: Supabase (Database, Auth, Edge Functions)
+- **Routing**: React Router DOM
+- **Forms**: React Hook Form + Zod validation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📁 Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
+```
+src/
+├── assets/          # Images and static assets
+├── components/      # Reusable React components
+│   ├── ui/          # shadcn/ui components
+│   ├── Navbar.tsx
+│   ├── HeroSection.tsx
+│   ├── ServicesSection.tsx
+│   ├── UniversitiesSection.tsx
+│   ├── SuccessSection.tsx
+│   ├── ProcessSection.tsx
+│   ├── ContactSection.tsx
+│   └── Footer.tsx
+├── data/            # Static data and constants
+├── hooks/           # Custom React hooks
+├── integrations/    # Third-party integrations (Supabase)
+├── lib/             # Utility functions
+├── pages/           # Page components
+│   ├── Index.tsx
+│   ├── About.tsx
+│   ├── Services.tsx
+│   ├── Universities.tsx
+│   ├── UniversityDetail.tsx
+│   ├── SuccessStory.tsx
+│   ├── Processing.tsx
+│   ├── Contact.tsx
+│   └── NotFound.tsx
+└── index.css        # Global styles and design tokens
+```
 
-**Use your preferred IDE**
+## 🚀 Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js 18+ 
+- npm or bun
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repository
+git clone <your-repo-url>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd global-consultancy
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📦 Build
 
-**Use GitHub Codespaces**
+```bash
+# Create production build
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview production build
+npm run preview
+```
 
-## What technologies are used for this project?
+## 🎨 Design System
 
-This project is built with:
+The project uses a custom design system with:
+- CSS custom properties for theming
+- HSL color values for consistency
+- Responsive breakpoints
+- Custom animations and transitions
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📧 Contact Form
 
-## How can I deploy this project?
+The contact form is integrated with Supabase Edge Functions to send email notifications when new inquiries are submitted.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📄 License
 
-## Can I connect a custom domain to my Lovable project?
+This project is private and proprietary.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Built with ❤️ using [Lovable](https://lovable.dev)
