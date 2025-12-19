@@ -80,8 +80,8 @@ const ProcessSection = () => {
       const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 0.5)));
       setRocketProgress(scrollProgress);
       
-      // Rocket vanishes when reaching the end
-      setRocketFinished(scrollProgress >= 0.92);
+      // Rocket vanishes when reaching the CTA button
+      setRocketFinished(scrollProgress >= 0.98);
 
       const stepThresholds = [0.15, 0.35, 0.55, 0.75];
       const newVisibleSteps = stepThresholds.map(threshold => scrollProgress >= threshold);
@@ -117,7 +117,7 @@ const ProcessSection = () => {
           {/* Particle Effects / Stars */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-32 h-full pointer-events-none overflow-hidden">
             {particles.map((particle) => {
-              const particleTop = rocketProgress * 85;
+              const particleTop = rocketProgress * 100;
               const isVisible = particleTop > 5 && !rocketFinished;
               
               return (
@@ -161,7 +161,7 @@ const ProcessSection = () => {
             className="absolute left-1/2 -translate-x-1/2 w-4 transition-all duration-300 ease-out z-10"
             style={{
               top: '0%',
-              height: `${Math.min(rocketProgress * 85, 85)}%`,
+              height: `${Math.min(rocketProgress * 100, 100)}%`,
               background: 'linear-gradient(to bottom, transparent 0%, hsl(var(--primary) / 0.1) 30%, hsl(var(--primary) / 0.3) 70%, hsl(var(--primary) / 0.6) 100%)',
               filter: 'blur(4px)',
             }}
@@ -173,7 +173,7 @@ const ProcessSection = () => {
               rocketFinished ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
             }`}
             style={{ 
-              top: `${Math.min(rocketProgress * 85, 85)}%`,
+              top: `${Math.min(rocketProgress * 100, 100)}%`,
             }}
           >
             <div className="relative">
