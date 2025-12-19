@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Rocket } from "lucide-react";
 
 const steps = [
   {
@@ -21,23 +22,33 @@ const steps = [
 
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [visibleSteps, setVisibleSteps] = useState<boolean[]>([false, false, false, false]);
+  const [rocketProgress, setRocketProgress] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animated");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
 
-    const cards = sectionRef.current?.querySelectorAll(".process-card");
-    cards?.forEach((card) => observer.observe(card));
+      const section = sectionRef.current;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
 
-    return () => observer.disconnect();
+      // Calculate rocket progress based on scroll position
+      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 0.5)));
+      setRocketProgress(scrollProgress);
+
+      // Trigger step visibility based on scroll
+      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
+      const newVisibleSteps = stepThresholds.map(threshold => scrollProgress >= threshold);
+      setVisibleSteps(newVisibleSteps);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -53,46 +64,114 @@ const ProcessSection = () => {
           </p>
         </div>
 
-        {/* Process Timeline */}
-        <div className="relative">
-          {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2" />
+        {/* Vertical Timeline */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Dotted Vertical Line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2">
+            <div className="w-full h-full border-l-2 border-dashed border-primary/40" />
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <div
-                key={step.step}
-                className={`process-card animate-on-scroll relative`}
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                {/* Step Number */}
-                <div className="relative z-10 flex justify-center mb-6">
-                  <div className="w-16 h-16 rounded-full gradient-bg flex items-center justify-center shadow-soft animate-pulse-glow">
-                    <span className="text-primary-foreground font-bold text-lg">
-                      {index + 1}
-                    </span>
+          {/* Animated Rocket */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 z-20 transition-all duration-300 ease-out"
+            style={{ 
+              top: `${Math.min(rocketProgress * 85, 85)}%`,
+            }}
+          >
+            <div className="relative">
+              <div className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center shadow-lg animate-pulse-glow">
+                <Rocket className="w-6 h-6 text-primary-foreground rotate-[135deg]" />
+              </div>
+              {/* Rocket trail */}
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-1 h-8 bg-gradient-to-b from-transparent via-primary/30 to-primary/60 rounded-full" />
+            </div>
+          </div>
+
+          {/* Steps */}
+          <div className="relative space-y-16 py-8">
+            {steps.map((step, index) => {
+              const isLeft = index % 2 === 0;
+              const isVisible = visibleSteps[index];
+
+              return (
+                <div
+                  key={step.step}
+                  className={`relative flex items-center ${isLeft ? "justify-start" : "justify-end"}`}
+                >
+                  {/* Connection Line */}
+                  <div 
+                    className={`absolute top-1/2 h-0.5 w-16 md:w-24 bg-gradient-to-r ${
+                      isLeft 
+                        ? "left-1/2 from-primary to-primary/30" 
+                        : "right-1/2 from-primary/30 to-primary"
+                    } -translate-y-1/2 transition-all duration-500 ${
+                      isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                    }`}
+                    style={{ 
+                      transformOrigin: isLeft ? "left" : "right",
+                      transitionDelay: `${index * 150}ms`
+                    }}
+                  />
+
+                  {/* Step Node on Timeline */}
+                  <div 
+                    className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-primary bg-background z-10 transition-all duration-500 ${
+                      isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                    }`}
+                    style={{ transitionDelay: `${index * 150}ms` }}
+                  />
+
+                  {/* Card */}
+                  <div
+                    className={`w-[calc(50%-4rem)] md:w-[calc(50%-5rem)] transition-all duration-700 ${
+                      isVisible 
+                        ? "opacity-100 translate-x-0" 
+                        : isLeft 
+                          ? "opacity-0 -translate-x-12" 
+                          : "opacity-0 translate-x-12"
+                    }`}
+                    style={{ transitionDelay: `${index * 200 + 100}ms` }}
+                  >
+                    {/* Step Badge */}
+                    <div 
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-primary/30 bg-primary/10 mb-4 ${
+                        isLeft ? "" : "ml-auto"
+                      }`}
+                    >
+                      <span className="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-xs font-bold text-primary-foreground">
+                        {index + 1}
+                      </span>
+                      <span className="text-primary font-semibold text-sm">{step.step}</span>
+                    </div>
+
+                    {/* Items */}
+                    <div className={`space-y-2 ${isLeft ? "" : "text-right"}`}>
+                      {step.items.map((item, itemIndex) => (
+                        <div
+                          key={item}
+                          className={`flex items-center gap-3 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 ${
+                            isLeft ? "flex-row" : "flex-row-reverse"
+                          } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                          style={{ transitionDelay: `${index * 200 + itemIndex * 100 + 200}ms` }}
+                        >
+                          <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
+                          <span className="text-sm text-foreground">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
+              );
+            })}
+          </div>
 
-                {/* Card */}
-                <div className="bg-card rounded-2xl p-6 shadow-card hover:shadow-hover transition-all duration-300">
-                  <h4 className="text-primary font-semibold text-sm mb-4 tracking-wide">
-                    {step.step}
-                  </h4>
-                  <ul className="space-y-3">
-                    {step.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-2 text-foreground"
-                      >
-                        <div className="w-2 h-2 rounded-full bg-primary/60" />
-                        <span className="text-sm">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+          {/* End indicator */}
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
+            <div className={`w-8 h-8 rounded-full border-2 border-primary/50 bg-primary/20 flex items-center justify-center transition-all duration-500 ${
+              visibleSteps[3] ? "scale-100 opacity-100" : "scale-0 opacity-0"
+            }`}>
+              <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
+            </div>
           </div>
         </div>
       </div>
