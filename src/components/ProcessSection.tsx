@@ -81,6 +81,18 @@ const ProcessSection = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const particles = useMemo(() => generateParticles(30), []);
 
+  // Function to create pause effect at step milestones
+  const applyStepPause = (progress: number, thresholds: number[], pauseRange: number = 0.03) => {
+    for (const threshold of thresholds) {
+      const distanceToThreshold = Math.abs(progress - threshold);
+      if (distanceToThreshold < pauseRange) {
+        // Create a "sticky" effect near the threshold
+        return threshold;
+      }
+    }
+    return progress;
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -91,20 +103,24 @@ const ProcessSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
 
-      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 1.2)));
-      setRocketProgress(scrollProgress);
+      const rawProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 1.2)));
+      
+      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
+      
+      // Apply pause effect at milestones
+      const pausedProgress = applyStepPause(rawProgress, stepThresholds, 0.025);
+      setRocketProgress(pausedProgress);
       
       // Rocket vanishes when reaching the CTA button
-      setRocketFinished(scrollProgress >= 0.95);
+      setRocketFinished(rawProgress >= 0.95);
 
-      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
-      const newVisibleSteps = stepThresholds.map(threshold => scrollProgress >= threshold);
+      const newVisibleSteps = stepThresholds.map(threshold => rawProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
       
       // Determine current step based on progress
       let stepIdx = 0;
       for (let i = stepThresholds.length - 1; i >= 0; i--) {
-        if (scrollProgress >= stepThresholds[i]) {
+        if (rawProgress >= stepThresholds[i]) {
           stepIdx = i;
           break;
         }
