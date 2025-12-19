@@ -65,11 +65,20 @@ const generateParticles = (count: number) => {
   }));
 };
 
+// Step gradient colors for trail
+const stepColors = [
+  { start: 'hsl(270 60% 55%)', end: 'hsl(280 60% 50%)' }, // violet to purple
+  { start: 'hsl(210 80% 55%)', end: 'hsl(185 80% 50%)' }, // blue to cyan
+  { start: 'hsl(155 70% 45%)', end: 'hsl(170 70% 45%)' }, // emerald to teal
+  { start: 'hsl(40 90% 55%)', end: 'hsl(25 90% 55%)' },   // amber to orange
+];
+
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleSteps, setVisibleSteps] = useState<boolean[]>([false, false, false, false]);
   const [rocketProgress, setRocketProgress] = useState(0);
   const [rocketFinished, setRocketFinished] = useState(false);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const particles = useMemo(() => generateParticles(30), []);
 
   useEffect(() => {
@@ -91,6 +100,16 @@ const ProcessSection = () => {
       const stepThresholds = [0.15, 0.35, 0.55, 0.75];
       const newVisibleSteps = stepThresholds.map(threshold => scrollProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
+      
+      // Determine current step based on progress
+      let stepIdx = 0;
+      for (let i = stepThresholds.length - 1; i >= 0; i--) {
+        if (scrollProgress >= stepThresholds[i]) {
+          stepIdx = i;
+          break;
+        }
+      }
+      setCurrentStepIndex(stepIdx);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -150,14 +169,18 @@ const ProcessSection = () => {
             <div className="w-full h-full bg-gradient-to-b from-violet-500/20 via-cyan-500/20 via-emerald-500/20 to-amber-500/20 rounded-full" />
           </div>
 
-          {/* Rocket Trail - Colorful gradient */}
+          {/* Rocket Trail - Dynamic gradient based on current step */}
           <div 
-            className="absolute left-1/2 -translate-x-1/2 w-2 transition-all duration-300 ease-out z-10 rounded-full"
+            className="absolute left-1/2 -translate-x-1/2 w-2 transition-all duration-500 ease-out z-10 rounded-full"
             style={{
               top: '0%',
               height: `${Math.min(rocketProgress * 95, 95)}%`,
-              background: 'linear-gradient(to bottom, hsl(270 60% 60% / 0.2) 0%, hsl(200 80% 55% / 0.4) 30%, hsl(160 70% 50% / 0.5) 60%, hsl(35 90% 55% / 0.6) 100%)',
-              boxShadow: '0 0 20px hsl(270 60% 60% / 0.3)',
+              background: `linear-gradient(to bottom, 
+                ${stepColors[0].start.replace(')', ' / 0.3)')} 0%, 
+                ${stepColors[1].start.replace(')', ' / 0.4)')} 25%, 
+                ${stepColors[2].start.replace(')', ' / 0.5)')} 55%, 
+                ${stepColors[3].start.replace(')', ' / 0.6)')} 100%)`,
+              boxShadow: `0 0 25px ${stepColors[currentStepIndex].start.replace(')', ' / 0.5)')}`,
             }}
           />
 
@@ -215,12 +238,28 @@ const ProcessSection = () => {
             }}
           >
             <div className="relative">
-              {/* Outer glow rings */}
-              <div className="absolute inset-0 w-20 h-20 -m-4 rounded-full bg-gradient-to-r from-violet-500/30 to-cyan-500/30 animate-ping" style={{ animationDuration: '2s' }} />
-              <div className="absolute inset-0 w-16 h-16 -m-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 animate-pulse" />
+              {/* Outer glow rings - Dynamic color based on current step */}
+              <div 
+                className="absolute inset-0 w-20 h-20 -m-4 rounded-full animate-ping transition-colors duration-500" 
+                style={{ 
+                  animationDuration: '2s',
+                  background: `linear-gradient(to right, ${stepColors[currentStepIndex].start.replace(')', ' / 0.3)')}, ${stepColors[currentStepIndex].end.replace(')', ' / 0.3)')})`
+                }} 
+              />
+              <div 
+                className="absolute inset-0 w-16 h-16 -m-2 rounded-full animate-pulse transition-colors duration-500" 
+                style={{
+                  background: `linear-gradient(to right, ${stepColors[currentStepIndex].start.replace(')', ' / 0.2)')}, ${stepColors[currentStepIndex].end.replace(')', ' / 0.2)')})`
+                }}
+              />
               
-              {/* Rocket body */}
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 flex items-center justify-center shadow-2xl border-2 border-white/20">
+              {/* Rocket body - Dynamic gradient */}
+              <div 
+                className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border-2 border-white/20 transition-all duration-500"
+                style={{
+                  background: `linear-gradient(to bottom right, ${stepColors[currentStepIndex].start}, ${stepColors[currentStepIndex].end})`
+                }}
+              >
                 <Rocket className="w-7 h-7 text-white rotate-[135deg] drop-shadow-lg" />
               </div>
               
