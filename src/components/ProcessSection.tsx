@@ -91,7 +91,7 @@ const ProcessSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
 
-      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 0.5)));
+      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 1.2)));
       setRocketProgress(scrollProgress);
       
       // Rocket vanishes when reaching the CTA button
