@@ -108,12 +108,12 @@ const HeroSection = () => {
               <img 
                 src={graduateGirl} 
                 alt="Female graduate student" 
-                className="w-36 h-44 object-cover object-top rounded-2xl shadow-xl border-3 border-white/60 -rotate-6 hover:rotate-0 hover:scale-105 transition-all duration-300"
+                className="w-36 h-44 object-cover object-top rounded-2xl shadow-xl border-3 border-white/60 -rotate-6 hover:rotate-0 hover:scale-105 transition-all duration-300 animate-float"
               />
               <img 
                 src={graduateBoy} 
                 alt="Male graduate student" 
-                className="w-36 h-44 object-cover object-top rounded-2xl shadow-xl border-3 border-white/60 rotate-6 hover:rotate-0 hover:scale-105 transition-all duration-300 -ml-6"
+                className="w-36 h-44 object-cover object-top rounded-2xl shadow-xl border-3 border-white/60 rotate-6 hover:rotate-0 hover:scale-105 transition-all duration-300 -ml-6 animate-float-delayed"
               />
             </div>
             
