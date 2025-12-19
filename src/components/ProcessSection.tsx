@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { Rocket, Sparkles, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -80,35 +80,13 @@ const ProcessSection = () => {
   const [visibleSteps, setVisibleSteps] = useState<boolean[]>([false, false, false, false]);
   const [rocketProgress, setRocketProgress] = useState(0);
   const [rocketFinished, setRocketFinished] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const particles = useMemo(() => generateParticles(30), []);
 
-  // Step positions where the rocket should stop (mapped to visual positions)
-  const stepPositions = [0, 0.18, 0.40, 0.62, 0.82, 0.95]; // Start, Step1, Step2, Step3, Step4, End
-  const scrollTriggers = [0, 0.12, 0.30, 0.48, 0.66, 0.85]; // Scroll progress to trigger each position
-
-  // Function to create stepped movement with stops at each milestone
-  const getSteppedProgress = useCallback((rawProgress: number) => {
-    // Find which segment we're in
-    for (let i = scrollTriggers.length - 1; i >= 0; i--) {
-      if (rawProgress >= scrollTriggers[i]) {
-        // Calculate progress within this segment
-        const segmentStart = scrollTriggers[i];
-        const segmentEnd = scrollTriggers[i + 1] || 1;
-        const positionStart = stepPositions[i];
-        const positionEnd = stepPositions[i + 1] || 0.95;
-        
-        const segmentProgress = (rawProgress - segmentStart) / (segmentEnd - segmentStart);
-        
-        // Ease out function for smooth deceleration when approaching stop
-        const easedProgress = 1 - Math.pow(1 - Math.min(segmentProgress, 1), 3);
-        
-        return positionStart + (positionEnd - positionStart) * easedProgress;
-      }
-    }
-    return 0;
-  }, [stepPositions, scrollTriggers]);
-
+  // Step visual positions on the timeline (where each step node is)
+  const stepVisualPositions = [0.18, 0.40, 0.62, 0.82]; // Step1, Step2, Step3, Step4 positions
+  
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -119,35 +97,69 @@ const ProcessSection = () => {
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
 
-      const rawProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 1.2)));
+      // Raw scroll progress through the section
+      const rawProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight * 0.8)));
       
-      // Apply stepped movement with stops
-      const steppedProgress = getSteppedProgress(rawProgress);
-      setRocketProgress(steppedProgress);
-      
-      // Rocket vanishes when reaching the CTA button
-      setRocketFinished(rawProgress >= 0.88);
-
-      const stepThresholds = [0.12, 0.30, 0.48, 0.66];
+      // Calculate which steps are visible and where rocket should be
+      const stepThresholds = [0.15, 0.35, 0.55, 0.75];
       const newVisibleSteps = stepThresholds.map(threshold => rawProgress >= threshold);
       setVisibleSteps(newVisibleSteps);
       
-      // Determine current step based on progress
+      // Rocket follows the line drawing - moves to each step position as it becomes visible
+      let targetPosition = 0;
       let stepIdx = 0;
-      for (let i = stepThresholds.length - 1; i >= 0; i--) {
+      
+      for (let i = 0; i < stepThresholds.length; i++) {
         if (rawProgress >= stepThresholds[i]) {
+          // Calculate smooth progress between steps
+          const nextThreshold = stepThresholds[i + 1] || 0.90;
+          const progressInSegment = Math.min(1, (rawProgress - stepThresholds[i]) / (nextThreshold - stepThresholds[i]));
+          const currentPos = stepVisualPositions[i];
+          const nextPos = stepVisualPositions[i + 1] || 0.95;
+          
+          // Smooth ease-out for drawing effect
+          const eased = 1 - Math.pow(1 - progressInSegment, 2);
+          targetPosition = currentPos + (nextPos - currentPos) * eased * 0.3; // Move partially toward next
+          
+          // Snap to current step position if we're past threshold
+          if (progressInSegment < 0.1) {
+            targetPosition = currentPos;
+          }
+          
           stepIdx = i;
-          break;
         }
       }
+      
+      // If no step reached yet, rocket starts moving toward first step
+      if (rawProgress < stepThresholds[0]) {
+        targetPosition = rawProgress / stepThresholds[0] * stepVisualPositions[0];
+      }
+      
+      setRocketProgress(targetPosition);
       setCurrentStepIndex(stepIdx);
+      
+      // Rocket finishes when reaching end
+      const isFinished = rawProgress >= 0.90;
+      setRocketFinished(isFinished);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [getSteppedProgress]);
+  }, []);
+
+  // Delayed celebration effect - only triggers once when rocket finishes
+  useEffect(() => {
+    if (rocketFinished && !showCelebration) {
+      const timer = setTimeout(() => {
+        setShowCelebration(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    } else if (!rocketFinished) {
+      setShowCelebration(false);
+    }
+  }, [rocketFinished, showCelebration]);
 
   return (
     <section id="processing" className="py-20 lg:py-32 bg-gradient-to-b from-background via-secondary/30 to-background relative overflow-hidden" ref={sectionRef}>
@@ -429,8 +441,8 @@ const ProcessSection = () => {
           {/* Apply Now CTA Button - Always visible with celebration effect when rocket arrives */}
           <div className="relative mt-16 flex justify-center">
             <div className="transition-all duration-1000">
-              {/* Celebration burst rings - only when rocket finishes */}
-              {rocketFinished && (
+              {/* Celebration burst rings - only when celebration triggers */}
+              {showCelebration && (
                 <>
                   <div className="absolute inset-0 -m-6 rounded-full bg-gradient-to-r from-violet-500/30 via-cyan-500/30 to-amber-500/30 animate-ping" style={{ animationDuration: '2s' }} />
                   <div className="absolute inset-0 -m-4 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 animate-pulse" style={{ animationDuration: '1.5s' }} />
@@ -443,15 +455,16 @@ const ProcessSection = () => {
                 </>
               )}
               
-              <div className={`relative ${rocketFinished ? 'animate-bounce' : ''}`} style={{ animationDuration: '2s' }}>
+              <div className={`relative ${showCelebration ? 'animate-bounce' : ''}`} style={{ animationDuration: '2s' }}>
                 <Link to="/contact">
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold shadow-2xl hover:shadow-violet-500/30 transition-all duration-500 px-10 py-7 text-lg rounded-2xl border border-white/20"
+                    className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-700 hover:via-purple-700 hover:to-indigo-700 text-white font-bold transition-all duration-500 px-10 py-7 text-lg rounded-2xl border border-white/20"
                     style={{
-                      boxShadow: rocketFinished 
+                      boxShadow: showCelebration 
                         ? '0 0 40px hsl(270 60% 55% / 0.5), 0 0 80px hsl(280 70% 60% / 0.3), 0 10px 40px -10px rgba(0,0,0,0.3)' 
-                        : '0 10px 40px -10px rgba(0,0,0,0.3)'
+                        : '0 4px 20px -5px rgba(0,0,0,0.2)',
+                      transition: 'box-shadow 0.8s ease-out'
                     }}
                   >
                     <Rocket className="w-5 h-5 mr-2" />
