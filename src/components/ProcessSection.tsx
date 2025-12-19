@@ -171,7 +171,7 @@ const ProcessSection = () => {
 
           {/* Rocket Trail - Dynamic gradient based on current step */}
           <div 
-            className="absolute left-1/2 -translate-x-1/2 w-2 transition-all duration-500 ease-out z-10 rounded-full"
+            className="absolute left-1/2 -translate-x-1/2 w-2 z-10 rounded-full"
             style={{
               top: '0%',
               height: `${Math.min(rocketProgress * 95, 95)}%`,
@@ -181,6 +181,7 @@ const ProcessSection = () => {
                 ${stepColors[2].start.replace(')', ' / 0.5)')} 55%, 
                 ${stepColors[3].start.replace(')', ' / 0.6)')} 100%)`,
               boxShadow: `0 0 25px ${stepColors[currentStepIndex].start.replace(')', ' / 0.5)')}`,
+              transition: 'height 0.15s ease-out, box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
             }}
           />
 
@@ -240,24 +241,28 @@ const ProcessSection = () => {
             <div className="relative">
               {/* Outer glow rings - Dynamic color based on current step */}
               <div 
-                className="absolute inset-0 w-20 h-20 -m-4 rounded-full animate-ping transition-colors duration-500" 
+                className="absolute inset-0 w-20 h-20 -m-4 rounded-full animate-ping" 
                 style={{ 
                   animationDuration: '2s',
-                  background: `linear-gradient(to right, ${stepColors[currentStepIndex].start.replace(')', ' / 0.3)')}, ${stepColors[currentStepIndex].end.replace(')', ' / 0.3)')})`
+                  background: `linear-gradient(to right, ${stepColors[currentStepIndex].start.replace(')', ' / 0.3)')}, ${stepColors[currentStepIndex].end.replace(')', ' / 0.3)')})`,
+                  transition: 'background 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
                 }} 
               />
               <div 
-                className="absolute inset-0 w-16 h-16 -m-2 rounded-full animate-pulse transition-colors duration-500" 
+                className="absolute inset-0 w-16 h-16 -m-2 rounded-full animate-pulse" 
                 style={{
-                  background: `linear-gradient(to right, ${stepColors[currentStepIndex].start.replace(')', ' / 0.2)')}, ${stepColors[currentStepIndex].end.replace(')', ' / 0.2)')})`
+                  background: `linear-gradient(to right, ${stepColors[currentStepIndex].start.replace(')', ' / 0.2)')}, ${stepColors[currentStepIndex].end.replace(')', ' / 0.2)')})`,
+                  transition: 'background 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               />
               
-              {/* Rocket body - Dynamic gradient */}
+              {/* Rocket body - Dynamic gradient with smooth transition */}
               <div 
-                className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border-2 border-white/20 transition-all duration-500"
+                className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border-2 border-white/20"
                 style={{
-                  background: `linear-gradient(to bottom right, ${stepColors[currentStepIndex].start}, ${stepColors[currentStepIndex].end})`
+                  background: `linear-gradient(to bottom right, ${stepColors[currentStepIndex].start}, ${stepColors[currentStepIndex].end})`,
+                  transition: 'background 0.8s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: `0 0 30px ${stepColors[currentStepIndex].start.replace(')', ' / 0.4)')}`,
                 }}
               >
                 <Rocket className="w-7 h-7 text-white rotate-[135deg] drop-shadow-lg" />
