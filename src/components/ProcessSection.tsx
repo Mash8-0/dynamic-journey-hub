@@ -272,7 +272,7 @@ const ProcessSection = () => {
                     className={`absolute top-7 -translate-y-1/2 h-[2px] overflow-hidden ${
                       isLeft 
                         ? "right-[50%] w-[calc(25%+2rem)] md:w-[calc(25%+2.5rem)]" 
-                        : "left-[50%] w-[calc(25%+0.5rem)] md:w-[calc(25%+1rem)]"
+                        : "left-[50%] w-[calc(25%-2rem)] md:w-[calc(25%-1.5rem)]"
                     }`}
                   >
                     {/* Base line */}
