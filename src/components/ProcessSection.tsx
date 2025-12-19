@@ -267,12 +267,12 @@ const ProcessSection = () => {
                     }}
                   />
 
-                  {/* Connection Line with drawing animation - from center to card center */}
+                  {/* Connection Line with drawing animation - from center to badge center */}
                   <div 
                     className={`absolute top-7 -translate-y-1/2 h-[2px] overflow-hidden ${
                       isLeft 
                         ? "right-[50%] w-[calc(25%+2rem)] md:w-[calc(25%+2.5rem)]" 
-                        : "left-[50%] w-[calc(25%+2rem)] md:w-[calc(25%+2.5rem)]"
+                        : "left-[50%] w-[calc(50%-7rem)] md:w-[calc(50%-8rem)]"
                     }`}
                   >
                     {/* Base line */}
