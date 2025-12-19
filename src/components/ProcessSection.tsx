@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { Rocket, Sparkles, MessageCircle, GraduationCap, FileText, Mail, Shield, CreditCard, Globe, CheckCircle, FileCheck, Plane, Car, Home, LucideIcon, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -53,7 +53,7 @@ const steps: Step[] = [
   },
 ];
 
-// Generate random particles/stars
+// Generate random particles/stars with stable colors
 const generateParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
@@ -62,6 +62,8 @@ const generateParticles = (count: number) => {
     duration: 0.5 + Math.random() * 1.5,
     size: 3 + Math.random() * 6,
     type: Math.random() > 0.3 ? 'star' : 'spark',
+    hue1: Math.floor(Math.random() * 60 + 20),
+    hue2: Math.floor(Math.random() * 60 + 280),
   }));
 };
 
@@ -86,7 +88,7 @@ const ProcessSection = () => {
   const scrollTriggers = [0, 0.12, 0.30, 0.48, 0.66, 0.85]; // Scroll progress to trigger each position
 
   // Function to create stepped movement with stops at each milestone
-  const getSteppedProgress = (rawProgress: number) => {
+  const getSteppedProgress = useCallback((rawProgress: number) => {
     // Find which segment we're in
     for (let i = scrollTriggers.length - 1; i >= 0; i--) {
       if (rawProgress >= scrollTriggers[i]) {
@@ -105,7 +107,7 @@ const ProcessSection = () => {
       }
     }
     return 0;
-  };
+  }, [stepPositions, scrollTriggers]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -145,7 +147,7 @@ const ProcessSection = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [getSteppedProgress]);
 
   return (
     <section id="processing" className="py-20 lg:py-32 bg-gradient-to-b from-background via-secondary/30 to-background relative overflow-hidden" ref={sectionRef}>
@@ -247,7 +249,7 @@ const ProcessSection = () => {
                       style={{ 
                         width: particle.size,
                         height: particle.size,
-                        background: `linear-gradient(135deg, hsl(${Math.random() * 60 + 20} 90% 60%), hsl(${Math.random() * 60 + 280} 80% 65%))`,
+                        background: `linear-gradient(135deg, hsl(${particle.hue1} 90% 60%), hsl(${particle.hue2} 80% 65%))`,
                         animationDelay: `${particle.delay}s`,
                         animationDuration: `${particle.duration + 0.5}s`,
                       }}
@@ -345,7 +347,7 @@ const ProcessSection = () => {
                     className={`absolute top-7 -translate-y-1/2 h-[2px] overflow-hidden ${
                       isLeft 
                         ? "right-[50%] w-[calc(25%+2rem)] md:w-[calc(25%+2.5rem)]" 
-                        : "left-[50%] w-[calc(25%-2rem)] md:w-[calc(25%-1.5rem)]"
+                        : "left-[50%] w-[calc(25%+2rem)] md:w-[calc(25%+2.5rem)]"
                     }`}
                   >
                   {/* Base line */}
