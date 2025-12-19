@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Rocket } from "lucide-react";
+import { useEffect, useRef, useState, useMemo } from "react";
+import { Rocket, Sparkles } from "lucide-react";
 
 const steps = [
   {
@@ -20,10 +20,23 @@ const steps = [
   },
 ];
 
+// Generate random particles/stars
+const generateParticles = (count: number) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: Math.random() * 60 + 20, // 20-80% from left
+    delay: Math.random() * 2,
+    duration: 1 + Math.random() * 2,
+    size: 2 + Math.random() * 4,
+    type: Math.random() > 0.5 ? 'star' : 'dot',
+  }));
+};
+
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleSteps, setVisibleSteps] = useState<boolean[]>([false, false, false, false]);
   const [rocketProgress, setRocketProgress] = useState(0);
+  const particles = useMemo(() => generateParticles(20), []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,6 +84,59 @@ const ProcessSection = () => {
             <div className="w-full h-full border-l-2 border-dashed border-primary/40" />
           </div>
 
+          {/* Particle Effects / Stars */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-32 h-full pointer-events-none overflow-hidden">
+            {particles.map((particle) => {
+              const particleTop = rocketProgress * 85;
+              const isVisible = particleTop > 5;
+              
+              return (
+                <div
+                  key={particle.id}
+                  className={`absolute transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                  style={{
+                    left: `${particle.left}%`,
+                    top: `${Math.max(0, particleTop - 15 - particle.delay * 8)}%`,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  {particle.type === 'star' ? (
+                    <Sparkles 
+                      className="text-primary animate-pulse" 
+                      style={{ 
+                        width: particle.size * 2,
+                        height: particle.size * 2,
+                        animationDelay: `${particle.delay}s`,
+                        animationDuration: `${particle.duration}s`,
+                      }}
+                    />
+                  ) : (
+                    <div 
+                      className="rounded-full bg-primary/60 animate-ping"
+                      style={{ 
+                        width: particle.size,
+                        height: particle.size,
+                        animationDelay: `${particle.delay}s`,
+                        animationDuration: `${particle.duration + 1}s`,
+                      }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Glowing trail behind rocket */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 w-4 transition-all duration-300 ease-out z-10"
+            style={{
+              top: '0%',
+              height: `${Math.min(rocketProgress * 85, 85)}%`,
+              background: 'linear-gradient(to bottom, transparent 0%, hsl(var(--primary) / 0.1) 30%, hsl(var(--primary) / 0.3) 70%, hsl(var(--primary) / 0.6) 100%)',
+              filter: 'blur(4px)',
+            }}
+          />
+
           {/* Animated Rocket */}
           <div 
             className="absolute left-1/2 -translate-x-1/2 z-20 transition-all duration-300 ease-out"
@@ -79,11 +145,19 @@ const ProcessSection = () => {
             }}
           >
             <div className="relative">
+              {/* Rocket glow effect */}
+              <div className="absolute inset-0 w-12 h-12 rounded-full bg-primary/30 animate-ping" />
               <div className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center shadow-lg animate-pulse-glow">
                 <Rocket className="w-6 h-6 text-primary-foreground rotate-[135deg]" />
               </div>
               {/* Rocket trail */}
-              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-1 h-8 bg-gradient-to-b from-transparent via-primary/30 to-primary/60 rounded-full" />
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-1.5 h-10 bg-gradient-to-b from-transparent via-primary/40 to-primary/80 rounded-full" />
+              {/* Secondary trail particles */}
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex gap-1">
+                <div className="w-1 h-1 rounded-full bg-primary/60 animate-ping" style={{ animationDelay: '0.1s' }} />
+                <div className="w-1 h-1 rounded-full bg-primary/60 animate-ping" style={{ animationDelay: '0.3s' }} />
+                <div className="w-1 h-1 rounded-full bg-primary/60 animate-ping" style={{ animationDelay: '0.5s' }} />
+              </div>
             </div>
           </div>
 
