@@ -270,7 +270,7 @@ const ProcessSection = () => {
                         return (
                           <div
                             key={item.text}
-                            className={`flex items-center gap-3 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 ${
+                            className={`flex items-center gap-3 p-3 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 cursor-pointer transition-all duration-300 ${
                               isLeft ? "flex-row" : "flex-row-reverse"
                             } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                             style={{ transitionDelay: `${index * 200 + itemIndex * 100 + 200}ms` }}
