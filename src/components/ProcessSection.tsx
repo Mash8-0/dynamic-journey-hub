@@ -294,11 +294,23 @@ const ProcessSection = () => {
             <div className={`transition-all duration-700 ${
               rocketFinished ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90"
             }`}>
-              <Link to="/contact">
-                <Button size="lg" className="gradient-bg text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base">
-                  Apply Now
-                </Button>
-              </Link>
+              {/* Glow ring effect */}
+              {rocketFinished && (
+                <div className="absolute inset-0 -m-2 rounded-xl bg-primary/30 animate-ping" style={{ animationDuration: '1.5s' }} />
+              )}
+              <div className={`relative ${rocketFinished ? 'animate-pulse' : ''}`} style={{ animationDuration: '2s' }}>
+                <Link to="/contact">
+                  <Button 
+                    size="lg" 
+                    className="gradient-bg text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base"
+                    style={{
+                      boxShadow: rocketFinished ? '0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.3)' : undefined
+                    }}
+                  >
+                    Apply Now
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
