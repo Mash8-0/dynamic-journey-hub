@@ -275,7 +275,7 @@ const ProcessSection = () => {
                         : "left-[50%] w-[calc(25%-2rem)] md:w-[calc(25%-1.5rem)]"
                     }`}
                   >
-                    {/* Base line */}
+                  {/* Base line */}
                     <div 
                       className={`absolute inset-0 transition-all duration-1000 ease-out ${
                         isVisible ? "scale-x-100" : "scale-x-0"
@@ -283,7 +283,7 @@ const ProcessSection = () => {
                       style={{ 
                         transformOrigin: isLeft ? "right" : "left",
                         transitionDelay: `${index * 150}ms`,
-                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, hsl(var(--primary) / 0.8), hsl(var(--primary) / 0.2))`,
+                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, hsl(245 58% 51% / 0.7), hsl(280 60% 55% / 0.3))`,
                       }}
                     />
                     {/* Animated glow traveling along the line */}
@@ -292,7 +292,7 @@ const ProcessSection = () => {
                         isVisible ? "opacity-100" : "opacity-0"
                       }`}
                       style={{ 
-                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, transparent, hsl(var(--primary)), transparent)`,
+                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, transparent, hsl(245 58% 51%), transparent)`,
                         animation: isVisible ? `${isLeft ? 'drawLineLeft' : 'drawLineRight'} 1.2s ease-out ${index * 150 + 100}ms forwards` : 'none',
                         filter: 'blur(1px)',
                       }}
