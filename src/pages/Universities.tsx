@@ -7,6 +7,7 @@ import ContactSection from "@/components/ContactSection";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useUniversities } from "@/hooks/useUniversities";
+import UniversityLogo from "@/components/UniversityLogo";
 
 // Skeleton card component with shimmer effect
 const UniversityCardSkeleton = () => (
@@ -127,13 +128,13 @@ const Universities = () => {
                     <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 group-hover:opacity-100 group-hover:from-indigo-500/20 group-hover:via-purple-500/10 group-hover:to-pink-500/20 transition-all duration-500 blur-xl -z-10" />
 
                     {/* Logo */}
-                    <div
-                      className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center mb-4 shadow-lg 
-                        transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-xl`}
-                    >
-                      <span className="text-white font-bold text-sm sm:text-lg drop-shadow-md">{uni.shortName}</span>
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
+                    <UniversityLogo
+                      logoUrl={uni.logoUrl}
+                      shortName={uni.shortName}
+                      color={uni.color}
+                      size="md"
+                      className="mb-4 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-xl"
+                    />
 
                     {/* University Info */}
                     <div className="flex-grow relative z-10">

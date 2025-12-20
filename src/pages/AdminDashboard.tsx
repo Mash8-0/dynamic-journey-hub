@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import LogoUpload from "@/components/LogoUpload";
+import UniversityLogo from "@/components/UniversityLogo";
 import {
   Dialog,
   DialogContent,
@@ -59,6 +61,7 @@ interface UniversityForm {
   website: string;
   facilities: string;
   highlights: string;
+  logo_url: string;
 }
 
 interface ProgramForm {
@@ -83,6 +86,7 @@ const initialUniversityForm: UniversityForm = {
   website: "",
   facilities: "",
   highlights: "",
+  logo_url: "",
 };
 
 const initialProgramForm: ProgramForm = {
@@ -159,6 +163,7 @@ const AdminDashboard = () => {
         website: universityForm.website,
         facilities: facilitiesArray,
         highlights: highlightsArray,
+        logo_url: universityForm.logo_url || null,
       };
 
       if (isEditing) {
@@ -199,6 +204,7 @@ const AdminDashboard = () => {
       website: uni.website,
       facilities: uni.facilities.join(", "),
       highlights: uni.highlights.join(", "),
+      logo_url: uni.logoUrl || "",
     });
     setIsEditing(true);
     setIsDialogOpen(true);
@@ -493,6 +499,16 @@ const AdminDashboard = () => {
                         placeholder="Top Ranked, Research Excellence"
                       />
                     </div>
+                    <div>
+                      <Label>University Logo</Label>
+                      <p className="text-xs text-muted-foreground mb-2">Upload a logo image (optional)</p>
+                      <LogoUpload
+                        universityId={universityForm.id || "new"}
+                        currentLogoUrl={universityForm.logo_url || null}
+                        onUploadComplete={(url) => setUniversityForm({ ...universityForm, logo_url: url })}
+                        onRemove={() => setUniversityForm({ ...universityForm, logo_url: "" })}
+                      />
+                    </div>
                     <Button onClick={handleSaveUniversity} disabled={isSaving} className="w-full">
                       {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : isEditing ? "Update" : "Add"} University
                     </Button>
@@ -590,9 +606,12 @@ const AdminDashboard = () => {
                     <TableRow key={uni.id}>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${uni.color} flex items-center justify-center text-white font-bold text-xs`}>
-                            {uni.shortName}
-                          </div>
+                          <UniversityLogo
+                            logoUrl={uni.logoUrl}
+                            shortName={uni.shortName}
+                            color={uni.color}
+                            size="sm"
+                          />
                           <div>
                             <div className="font-medium text-sm">{uni.name}</div>
                             <div className="text-xs text-muted-foreground sm:hidden">{uni.location}</div>

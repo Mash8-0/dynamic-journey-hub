@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUniversities } from "@/hooks/useUniversities";
+import UniversityLogo from "@/components/UniversityLogo";
 
 const UniversitiesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -62,12 +63,14 @@ const UniversitiesSection = () => {
                   }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Logo Placeholder with Gradient */}
-                  <div
-                    className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform shadow-md`}
-                  >
-                    <span className="text-white font-bold text-xs sm:text-lg">{uni.shortName}</span>
-                  </div>
+                  {/* Logo */}
+                  <UniversityLogo
+                    logoUrl={uni.logoUrl}
+                    shortName={uni.shortName}
+                    color={uni.color}
+                    size="sm"
+                    className="mb-3 sm:mb-4 group-hover:scale-110 transition-transform"
+                  />
                   <h3 className="font-semibold text-foreground text-xs sm:text-sm lg:text-base mb-1 sm:mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                     {uni.name}
                   </h3>

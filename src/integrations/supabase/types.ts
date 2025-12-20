@@ -89,6 +89,7 @@ export type Database = {
           highlights: string[]
           id: string
           location: string
+          logo_url: string | null
           name: string
           ranking: string | null
           short_name: string
@@ -105,6 +106,7 @@ export type Database = {
           highlights?: string[]
           id: string
           location: string
+          logo_url?: string | null
           name: string
           ranking?: string | null
           short_name: string
@@ -121,6 +123,7 @@ export type Database = {
           highlights?: string[]
           id?: string
           location?: string
+          logo_url?: string | null
           name?: string
           ranking?: string | null
           short_name?: string

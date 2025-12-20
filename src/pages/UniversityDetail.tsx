@@ -6,6 +6,7 @@ import { useUniversity, Program } from "@/hooks/useUniversities";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import UniversityLogo from "@/components/UniversityLogo";
 
 // Group programs by level
 const groupProgramsByLevel = (programs: Program[]) => {
@@ -113,11 +114,13 @@ const UniversityDetail = () => {
             </Link>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
-                <span className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, var(--tw-gradient-from), var(--tw-gradient-to))` }}>
-                  {university.shortName}
-                </span>
-              </div>
+              <UniversityLogo
+                logoUrl={university.logoUrl}
+                shortName={university.shortName}
+                color={university.color}
+                size="lg"
+                className="bg-white flex-shrink-0"
+              />
 
               <div className="text-white">
                 <Badge variant="secondary" className="mb-2 bg-white/20 text-white border-0 text-xs sm:text-sm">
