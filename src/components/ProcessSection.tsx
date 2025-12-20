@@ -386,15 +386,24 @@ const ProcessSection = () => {
                         return (
                           <div
                             key={item.text}
-                            className={`flex items-center gap-3 p-4 rounded-xl bg-card/60 backdrop-blur-sm border border-border/40 shadow-sm hover:shadow-xl hover:border-primary/40 hover:-translate-y-1.5 hover:bg-card/90 cursor-pointer transition-all duration-300 group ${
-                              isLeft ? "flex-row" : "flex-row-reverse"
-                            } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+                            className={`relative flex items-center gap-3 p-4 rounded-xl bg-card/60 backdrop-blur-sm border border-border/40 shadow-sm 
+                              hover:shadow-[0_8px_30px_-5px_hsl(245_58%_51%/0.2)] hover:border-indigo-500/40 hover:-translate-y-1.5 hover:bg-card/90 
+                              cursor-pointer transition-all duration-300 group overflow-hidden
+                              before:absolute before:inset-0 before:bg-gradient-to-br before:from-indigo-500/0 before:to-purple-500/0 before:transition-all before:duration-500
+                              hover:before:from-indigo-500/5 hover:before:to-purple-500/10
+                              ${isLeft ? "flex-row" : "flex-row-reverse"} 
+                              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
                             style={{ transitionDelay: `${index * 200 + itemIndex * 100 + 200}ms` }}
                           >
-                            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shrink-0 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                              <ItemIcon className="w-5 h-5 text-white" />
+                            {/* Glow effect */}
+                            <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 group-hover:opacity-100 group-hover:from-indigo-500/10 group-hover:via-purple-500/5 group-hover:to-pink-500/10 transition-all duration-500 blur-lg -z-10" />
+                            
+                            <div className={`relative w-10 h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shrink-0 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                              <ItemIcon className="w-5 h-5 text-white drop-shadow-sm" />
+                              {/* Shine effect */}
+                              <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </div>
-                            <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.text}</span>
+                            <span className="text-sm font-medium text-foreground group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors relative z-10">{item.text}</span>
                           </div>
                         );
                       })}
@@ -405,15 +414,12 @@ const ProcessSection = () => {
             })}
           </div>
 
-          {/* Apply Now CTA Button - Clean professional style */}
+          {/* Apply Now CTA Button - Glass style */}
           <div className="relative mt-16 flex justify-center">
             <Link to="/contact">
               <Button 
                 size="lg" 
-                className="group bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white font-bold px-10 py-7 text-lg rounded-2xl border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_-8px_rgba(139,92,246,0.5)]"
-                style={{
-                  boxShadow: '0 4px 20px -5px rgba(0,0,0,0.15)',
-                }}
+                className="group btn-glass-primary font-bold px-10 py-7 text-lg rounded-2xl transition-all duration-300 hover:scale-105"
               >
                 <Rocket className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
                 Apply Now
