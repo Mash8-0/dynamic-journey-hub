@@ -41,6 +41,8 @@ export const universities: University[] = [
       { name: "Business Administration", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Law", duration: "4 years", level: "Bachelor", faculty: "Faculty of Law" },
       { name: "Pharmacy", duration: "4 years", level: "Bachelor", faculty: "Faculty of Pharmacy" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Graduate Studies" },
     ],
     facilities: ["Research Labs", "Library", "Sports Complex", "Student Hostels", "Medical Centre"],
     highlights: ["Top University in Malaysia", "Research Excellence", "Strong Alumni Network"]
@@ -62,6 +64,8 @@ export const universities: University[] = [
       { name: "Food Science", duration: "4 years", level: "Bachelor", faculty: "Faculty of Food Science" },
       { name: "Forestry", duration: "4 years", level: "Bachelor", faculty: "Faculty of Forestry" },
       { name: "Environmental Studies", duration: "4 years", level: "Bachelor", faculty: "Faculty of Environmental Studies" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "School of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "School of Graduate Studies" },
     ],
     facilities: ["Agricultural Farms", "Veterinary Hospital", "Research Centers", "Sports Facilities"],
     highlights: ["Agriculture Excellence", "Green Campus", "Research Innovation"]
@@ -83,6 +87,8 @@ export const universities: University[] = [
       { name: "Islamic Studies", duration: "4 years", level: "Bachelor", faculty: "Faculty of Islamic Studies" },
       { name: "Science & Technology", duration: "4 years", level: "Bachelor", faculty: "Faculty of Science" },
       { name: "Social Sciences", duration: "3 years", level: "Bachelor", faculty: "Faculty of Social Sciences" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Graduate School of Business" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School of Business" },
     ],
     facilities: ["Teaching Hospital", "Research Labs", "Islamic Centre", "Cultural Centre"],
     highlights: ["National Heritage", "Medical Excellence", "Cultural Diversity"]
@@ -104,6 +110,8 @@ export const universities: University[] = [
       { name: "Architecture", duration: "5 years", level: "Bachelor", faculty: "School of Housing, Building & Planning" },
       { name: "Arts", duration: "4 years", level: "Bachelor", faculty: "School of Arts" },
       { name: "Communication", duration: "4 years", level: "Bachelor", faculty: "School of Communication" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Postgraduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Postgraduate Studies" },
     ],
     facilities: ["APEX Research Labs", "Art Gallery", "Marine Research Station", "Teaching Hospital"],
     highlights: ["APEX University", "Sustainability Focus", "Island Campus"]
@@ -125,6 +133,8 @@ export const universities: University[] = [
       { name: "Computer Science", duration: "4 years", level: "Bachelor", faculty: "School of Computing" },
       { name: "Architecture", duration: "5 years", level: "Bachelor", faculty: "School of Architecture" },
       { name: "Mechanical Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Mechanical Engineering" },
+      { name: "Master of Engineering", duration: "2 years", level: "Master", faculty: "School of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "School of Graduate Studies" },
     ],
     facilities: ["Innovation Hub", "Engineering Labs", "Technology Park", "Student Centre"],
     highlights: ["Engineering Excellence", "Industry Links", "Innovation Campus"]
@@ -146,6 +156,8 @@ export const universities: University[] = [
       { name: "Mass Communication", duration: "3 years", level: "Bachelor", faculty: "Faculty of Communication" },
       { name: "Art & Design", duration: "4 years", level: "Bachelor", faculty: "Faculty of Art & Design" },
       { name: "Hotel Management", duration: "3 years", level: "Diploma", faculty: "Faculty of Hotel & Tourism" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Institute of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Graduate Studies" },
     ],
     facilities: ["Multiple Campuses", "Broadcasting Studios", "Design Studios", "Business Labs"],
     highlights: ["Largest University", "Professional Programs", "Nationwide Campuses"]
@@ -166,6 +178,8 @@ export const universities: University[] = [
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "Kulliyyah of Medicine" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Kulliyyah of Engineering" },
       { name: "Economics", duration: "4 years", level: "Bachelor", faculty: "Kulliyyah of Economics" },
+      { name: "Master of Islamic Studies", duration: "2 years", level: "Master", faculty: "Institute of Islamic Banking and Finance" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Kulliyyah of Graduate Studies" },
     ],
     facilities: ["Grand Mosque", "Islamic Research Centre", "Medical Centre", "International Campus"],
     highlights: ["Islamic Excellence", "International Community", "Holistic Education"]
@@ -186,6 +200,8 @@ export const universities: University[] = [
       { name: "Economics", duration: "4 years", level: "Bachelor", faculty: "School of Economics" },
       { name: "Public Management", duration: "4 years", level: "Bachelor", faculty: "School of Government" },
       { name: "Information Technology", duration: "4 years", level: "Bachelor", faculty: "School of Computing" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Othman Yeop Abdullah Graduate School of Business" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Othman Yeop Abdullah Graduate School of Business" },
     ],
     facilities: ["Convention Centre", "Golf Course", "Lake Resort", "Business Labs"],
     highlights: ["Management Focus", "Beautiful Campus", "Business Excellence"]
@@ -206,6 +222,8 @@ export const universities: University[] = [
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "Faculty of Medicine" },
       { name: "Computer Science", duration: "4 years", level: "Bachelor", faculty: "Faculty of Computer Science" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Centre for Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Centre for Graduate Studies" },
     ],
     facilities: ["Biodiversity Centre", "Rainforest Research", "Cultural Village", "Teaching Hospital"],
     highlights: ["Biodiversity Focus", "Indigenous Studies", "Borneo Campus"]
@@ -226,6 +244,8 @@ export const universities: University[] = [
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Psychology", duration: "4 years", level: "Bachelor", faculty: "Faculty of Psychology" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Centre for Postgraduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Centre for Postgraduate Studies" },
     ],
     facilities: ["Marine Research Centre", "Aquarium", "Tropical Gardens", "Scenic Campus"],
     highlights: ["Marine Excellence", "Tropical Research", "Scenic Location"]
@@ -246,6 +266,8 @@ export const universities: University[] = [
       { name: "Maritime Technology", duration: "4 years", level: "Bachelor", faculty: "Faculty of Maritime Studies" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Ocean Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Ocean Engineering" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Oceanography and Environment" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Oceanography and Environment" },
     ],
     facilities: ["Research Vessels", "Aquaculture Centre", "Marine Station", "Oceanography Labs"],
     highlights: ["Maritime Focus", "Ocean Research", "Coastal Campus"]
@@ -266,6 +288,8 @@ export const universities: University[] = [
       { name: "Sports Science", duration: "4 years", level: "Bachelor", faculty: "Faculty of Sports Science" },
       { name: "Art Education", duration: "4 years", level: "Bachelor", faculty: "Faculty of Art & Design" },
       { name: "Language Education", duration: "4 years", level: "Bachelor", faculty: "Faculty of Languages" },
+      { name: "Master of Education", duration: "2 years", level: "Master", faculty: "Institute of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Graduate Studies" },
     ],
     facilities: ["Teaching Labs", "Music Studios", "Sports Complex", "Art Galleries"],
     highlights: ["Education Focus", "Teacher Training", "Historic Institution"]
@@ -286,6 +310,8 @@ export const universities: University[] = [
       { name: "Electrical Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Electrical Engineering" },
       { name: "Technical Education", duration: "4 years", level: "Bachelor", faculty: "Faculty of Technical Education" },
       { name: "Technology Management", duration: "4 years", level: "Bachelor", faculty: "Faculty of Technology Management" },
+      { name: "Master of Engineering", duration: "2 years", level: "Master", faculty: "Centre for Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Centre for Graduate Studies" },
     ],
     facilities: ["Engineering Workshops", "Technical Labs", "Innovation Centre", "Industrial Park"],
     highlights: ["Technical Excellence", "Industry Ready", "Engineering Focus"]
@@ -306,6 +332,8 @@ export const universities: University[] = [
       { name: "Bioprocess Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Bioprocess Engineering" },
       { name: "Materials Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Materials Engineering" },
       { name: "Computer Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Computer Engineering" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Postgraduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Postgraduate Studies" },
     ],
     facilities: ["Engineering Labs", "Fabrication Centre", "Innovation Hub", "Research Facilities"],
     highlights: ["Engineering Focus", "Industry Links", "Technical Innovation"]
@@ -326,6 +354,8 @@ export const universities: University[] = [
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Law & International Relations", duration: "4 years", level: "Bachelor", faculty: "Faculty of Law" },
       { name: "Languages", duration: "4 years", level: "Bachelor", faculty: "Faculty of Languages" },
+      { name: "Master of Islamic Studies", duration: "2 years", level: "Master", faculty: "Centre for Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Centre for Graduate Studies" },
     ],
     facilities: ["Islamic Centre", "Medical Centre", "Language Labs", "Business Hub"],
     highlights: ["Islamic Values", "Medical Programs", "Language Excellence"]
@@ -344,11 +374,13 @@ export const universities: University[] = [
     ranking: "QS World Ranking: #284",
     website: "https://www.taylors.edu.my",
     programs: [
+      { name: "Foundation in Arts", duration: "1 year", level: "Foundation", faculty: "School of Foundation Studies" },
       { name: "Hospitality Management", duration: "3 years", level: "Bachelor", faculty: "School of Hospitality" },
       { name: "Culinary Arts", duration: "3 years", level: "Diploma", faculty: "School of Culinary Arts" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Taylor's Business School" },
       { name: "Architecture", duration: "5 years", level: "Bachelor", faculty: "School of Architecture" },
-      { name: "Biosciences", duration: "3 years", level: "Bachelor", faculty: "School of Biosciences" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Lakeside Campus", "Culinary Labs", "Design Studios", "Business Centre"],
     highlights: ["#1 Private University", "Hospitality Excellence", "Beautiful Campus"]
@@ -365,11 +397,13 @@ export const universities: University[] = [
     ranking: "QS World Ranking: #586",
     website: "https://www.sunway.edu.my",
     programs: [
+      { name: "Foundation in Arts", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Accounting & Finance", duration: "3 years", level: "Bachelor", faculty: "Sunway Business School" },
       { name: "Computer Science", duration: "3 years", level: "Bachelor", faculty: "School of Science & Technology" },
       { name: "Psychology", duration: "3 years", level: "Bachelor", faculty: "School of Healthcare" },
       { name: "Communication", duration: "3 years", level: "Bachelor", faculty: "School of Arts" },
-      { name: "Actuarial Studies", duration: "3 years", level: "Bachelor", faculty: "Sunway Business School" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Sunway Business School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate Studies" },
     ],
     facilities: ["Sunway City Campus", "Research Centre", "Student Hub", "Sports Complex"],
     highlights: ["Industry Partnerships", "Modern Campus", "Career Support"]
@@ -386,11 +420,13 @@ export const universities: University[] = [
     ranking: "QS World Ranking: #42 (Monash Global)",
     website: "https://www.monash.edu.my",
     programs: [
+      { name: "Foundation Year", duration: "1 year", level: "Foundation", faculty: "Monash College" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Engineering" },
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "Jeffrey Cheah School of Medicine" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Monash Business School" },
       { name: "Pharmacy", duration: "4 years", level: "Bachelor", faculty: "School of Pharmacy" },
-      { name: "Information Technology", duration: "3 years", level: "Bachelor", faculty: "School of Information Technology" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Graduate Research" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate Research" },
     ],
     facilities: ["World-Class Labs", "Medical Centre", "Research Facilities", "International Campus"],
     highlights: ["World-Ranked University", "Australian Degree", "Research Excellence"]
@@ -407,11 +443,13 @@ export const universities: University[] = [
     ranking: "QS World Ranking: #100 (Nottingham Global)",
     website: "https://www.nottingham.edu.my",
     programs: [
+      { name: "Foundation in Science", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
       { name: "Science", duration: "3 years", level: "Bachelor", faculty: "Faculty of Science" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Nottingham Business School" },
       { name: "Arts & Social Sciences", duration: "3 years", level: "Bachelor", faculty: "Faculty of Arts" },
-      { name: "Pharmacy", duration: "4 years", level: "Bachelor", faculty: "School of Pharmacy" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["British Campus", "Research Labs", "Green Campus", "Student Village"],
     highlights: ["UK Degree", "Russell Group", "Green Campus"]
@@ -428,11 +466,13 @@ export const universities: University[] = [
     ranking: "QS 5 Stars Rating",
     website: "https://www.apu.edu.my",
     programs: [
+      { name: "Foundation in Computing", duration: "1 year", level: "Foundation", faculty: "School of Foundation" },
       { name: "Computer Science", duration: "3 years", level: "Bachelor", faculty: "School of Computing" },
       { name: "Software Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Computing" },
       { name: "Game Development", duration: "3 years", level: "Bachelor", faculty: "School of Computing" },
       { name: "Cybersecurity", duration: "3 years", level: "Bachelor", faculty: "School of Computing" },
-      { name: "Business Management", duration: "3 years", level: "Bachelor", faculty: "School of Business" },
+      { name: "Master of Science in IT", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Tech Labs", "Game Studios", "Cybersecurity Centre", "Innovation Hub"],
     highlights: ["Tech Excellence", "Award-Winning", "Industry Ready"]
@@ -449,11 +489,13 @@ export const universities: University[] = [
     ranking: "QS World Ranking: #300",
     website: "https://www.ucsiuniversity.edu.my",
     programs: [
+      { name: "Foundation in Science", duration: "1 year", level: "Foundation", faculty: "Centre for Pre-University Studies" },
       { name: "Music", duration: "4 years", level: "Bachelor", faculty: "Institute of Music" },
       { name: "Pharmacy", duration: "4 years", level: "Bachelor", faculty: "Faculty of Pharmaceutical Sciences" },
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "Faculty of Medicine" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
-      { name: "Hospitality", duration: "3 years", level: "Bachelor", faculty: "Faculty of Hospitality" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Graduate Studies" },
     ],
     facilities: ["Concert Hall", "Medical Labs", "Engineering Centre", "Hotel School"],
     highlights: ["Music Excellence", "Medical Programs", "Multi-Disciplinary"]
@@ -469,11 +511,13 @@ export const universities: University[] = [
     established: 1986,
     website: "https://www.help.edu.my",
     programs: [
+      { name: "Foundation in Arts", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Psychology", duration: "3 years", level: "Bachelor", faculty: "Faculty of Behavioural Sciences" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Law", duration: "3 years", level: "Bachelor", faculty: "Faculty of Law" },
       { name: "Communication", duration: "3 years", level: "Bachelor", faculty: "Faculty of Arts & Social Sciences" },
-      { name: "IT", duration: "3 years", level: "Bachelor", faculty: "Faculty of Science & Technology" },
+      { name: "Master of Clinical Psychology", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Psychology Labs", "Moot Court", "Business Centre", "Career Services"],
     highlights: ["Psychology Excellence", "Industry Links", "Career Focus"]
@@ -489,11 +533,13 @@ export const universities: University[] = [
     established: 1992,
     website: "https://www.imu.edu.my",
     programs: [
+      { name: "Foundation in Science", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "School of Medicine" },
       { name: "Dentistry", duration: "5 years", level: "Bachelor", faculty: "School of Dentistry" },
       { name: "Pharmacy", duration: "4 years", level: "Bachelor", faculty: "School of Pharmacy" },
       { name: "Nursing", duration: "4 years", level: "Bachelor", faculty: "School of Nursing" },
-      { name: "Biomedical Science", duration: "3 years", level: "Bachelor", faculty: "School of Health Sciences" },
+      { name: "Master of Public Health", duration: "2 years", level: "Master", faculty: "Postgraduate Institute" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Postgraduate Institute" },
     ],
     facilities: ["Teaching Hospital", "Clinical Skills Labs", "Research Centre", "Partner Programs"],
     highlights: ["Medical Excellence", "Global Partners", "Clinical Training"]
@@ -509,11 +555,13 @@ export const universities: University[] = [
     established: 1996,
     website: "https://www.mmu.edu.my",
     programs: [
+      { name: "Foundation in IT", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Film & Animation", duration: "3 years", level: "Bachelor", faculty: "Faculty of Creative Multimedia" },
       { name: "Information Technology", duration: "3 years", level: "Bachelor", faculty: "Faculty of Information Technology" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
-      { name: "Law", duration: "4 years", level: "Bachelor", faculty: "Faculty of Law" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Graduate Studies" },
     ],
     facilities: ["Animation Studios", "Recording Studios", "Tech Labs", "Cyberjaya Campus"],
     highlights: ["Multimedia Pioneer", "Tech Industry Hub", "Creative Excellence"]
@@ -529,11 +577,13 @@ export const universities: University[] = [
     established: 1997,
     website: "https://www.uniten.edu.my",
     programs: [
+      { name: "Foundation in Engineering", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Electrical Power Engineering", duration: "4 years", level: "Bachelor", faculty: "College of Engineering" },
       { name: "Mechanical Engineering", duration: "4 years", level: "Bachelor", faculty: "College of Engineering" },
       { name: "Civil Engineering", duration: "4 years", level: "Bachelor", faculty: "College of Engineering" },
       { name: "Accounting", duration: "3 years", level: "Bachelor", faculty: "College of Business" },
-      { name: "Information Technology", duration: "3 years", level: "Bachelor", faculty: "College of Computing" },
+      { name: "Master of Engineering", duration: "2 years", level: "Master", faculty: "College of Graduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "College of Graduate Studies" },
     ],
     facilities: ["Power Labs", "Smart Grid Centre", "Engineering Workshops", "TNB Partnership"],
     highlights: ["Energy Focus", "TNB Backed", "Engineering Excellence"]
@@ -549,11 +599,13 @@ export const universities: University[] = [
     established: 2002,
     website: "https://www.utar.edu.my",
     programs: [
+      { name: "Foundation in Science", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
       { name: "Science", duration: "3 years", level: "Bachelor", faculty: "Faculty of Science" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "Faculty of Medicine" },
-      { name: "Creative Industries", duration: "3 years", level: "Bachelor", faculty: "Faculty of Creative Industries" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Institute of Postgraduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Institute of Postgraduate Studies" },
     ],
     facilities: ["Research Labs", "Teaching Hospital", "Sports Complex", "Twin Campuses"],
     highlights: ["Affordable Quality", "Research Focus", "Large Campus"]
@@ -569,11 +621,13 @@ export const universities: University[] = [
     established: 2005,
     website: "https://www.mahsa.edu.my",
     programs: [
+      { name: "Foundation in Science", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Medicine", duration: "5 years", level: "Bachelor", faculty: "Faculty of Medicine" },
       { name: "Dentistry", duration: "5 years", level: "Bachelor", faculty: "Faculty of Dentistry" },
       { name: "Nursing", duration: "4 years", level: "Bachelor", faculty: "Faculty of Nursing" },
       { name: "Biomedical Science", duration: "3 years", level: "Bachelor", faculty: "Faculty of Health Sciences" },
-      { name: "Physiotherapy", duration: "4 years", level: "Bachelor", faculty: "Faculty of Health Sciences" },
+      { name: "Master of Medical Science", duration: "2 years", level: "Master", faculty: "Postgraduate Studies" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Postgraduate Studies" },
     ],
     facilities: ["Teaching Hospital", "Dental Clinic", "Clinical Labs", "Health Centre"],
     highlights: ["Health Sciences Focus", "Clinical Training", "Medical Excellence"]
@@ -589,11 +643,13 @@ export const universities: University[] = [
     established: 1977,
     website: "https://www.segi.edu.my",
     programs: [
+      { name: "Foundation in Arts", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Optometry", duration: "4 years", level: "Bachelor", faculty: "Faculty of Optometry" },
       { name: "Dentistry", duration: "5 years", level: "Bachelor", faculty: "Faculty of Dentistry" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "Faculty of Engineering" },
-      { name: "Education", duration: "4 years", level: "Bachelor", faculty: "Faculty of Education" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Multiple Campuses", "Optometry Clinic", "Dental Centre", "Student Hub"],
     highlights: ["Multi-Campus", "Health Programs", "Diverse Options"]
@@ -609,11 +665,13 @@ export const universities: University[] = [
     established: 1986,
     website: "https://www.newinti.edu.my",
     programs: [
+      { name: "Foundation in Business", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "School of Business" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Engineering" },
       { name: "IT", duration: "3 years", level: "Bachelor", faculty: "School of Computing" },
       { name: "Hospitality", duration: "3 years", level: "Bachelor", faculty: "School of Hospitality" },
-      { name: "Mass Communication", duration: "3 years", level: "Bachelor", faculty: "School of Arts" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Global Network", "Industry Partners", "Modern Campus", "Career Services"],
     highlights: ["Global Network", "Industry Links", "Career Focus"]
@@ -629,11 +687,13 @@ export const universities: University[] = [
     established: 1991,
     website: "https://www.limkokwing.net",
     programs: [
+      { name: "Foundation in Design", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Graphic Design", duration: "3 years", level: "Bachelor", faculty: "Faculty of Design Innovation" },
       { name: "Fashion Design", duration: "3 years", level: "Bachelor", faculty: "Faculty of Fashion" },
       { name: "Animation", duration: "3 years", level: "Bachelor", faculty: "Faculty of Creative Multimedia" },
       { name: "Architecture", duration: "5 years", level: "Bachelor", faculty: "Faculty of Architecture" },
-      { name: "Music", duration: "3 years", level: "Bachelor", faculty: "Faculty of Music" },
+      { name: "Master of Design", duration: "2 years", level: "Master", faculty: "Postgraduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Postgraduate School" },
     ],
     facilities: ["Design Studios", "Fashion Labs", "Animation Centre", "Creative Hub"],
     highlights: ["Creative Focus", "Design Excellence", "Global Campuses"]
@@ -649,11 +709,13 @@ export const universities: University[] = [
     established: 1983,
     website: "https://www.uow.edu.my",
     programs: [
+      { name: "Foundation in Arts", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Game Development", duration: "3 years", level: "Bachelor", faculty: "School of Computing" },
       { name: "Hospitality", duration: "3 years", level: "Bachelor", faculty: "School of Hospitality" },
       { name: "Business", duration: "3 years", level: "Bachelor", faculty: "School of Business" },
       { name: "Engineering", duration: "4 years", level: "Bachelor", faculty: "School of Engineering" },
-      { name: "Communication", duration: "3 years", level: "Bachelor", faculty: "School of Communication" },
+      { name: "Master of Science", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Australian Partner", "Gaming Labs", "Hospitality Centre", "Modern Campus"],
     highlights: ["UOW Partnership", "Australian Degree", "Industry Ready"]
@@ -669,11 +731,13 @@ export const universities: University[] = [
     established: 1984,
     website: "https://www.city.edu.my",
     programs: [
+      { name: "Foundation in Arts", duration: "1 year", level: "Foundation", faculty: "Centre for Foundation Studies" },
       { name: "Business Administration", duration: "3 years", level: "Bachelor", faculty: "Faculty of Business" },
       { name: "Information Technology", duration: "3 years", level: "Bachelor", faculty: "Faculty of Computing" },
       { name: "Accountancy", duration: "3 years", level: "Bachelor", faculty: "Faculty of Accountancy" },
       { name: "Early Childhood Education", duration: "4 years", level: "Bachelor", faculty: "Faculty of Education" },
-      { name: "Psychology", duration: "3 years", level: "Bachelor", faculty: "Faculty of Social Sciences" },
+      { name: "Master of Business Administration", duration: "2 years", level: "Master", faculty: "Graduate School" },
+      { name: "Doctor of Philosophy", duration: "3-4 years", level: "PhD", faculty: "Graduate School" },
     ],
     facilities: ["Computer Labs", "Library", "Student Centre", "Career Services"],
     highlights: ["Industry Focus", "Practical Learning", "Affordable Education"]
