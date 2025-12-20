@@ -337,7 +337,7 @@ const ProcessSection = () => {
                       style={{ 
                         transformOrigin: isLeft ? "right" : "left",
                         transitionDelay: `${index * 150}ms`,
-                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, hsl(245 58% 51% / 0.7), hsl(280 60% 55% / 0.3))`,
+                        background: `linear-gradient(to right, hsl(245 58% 51% / 0.7), hsl(280 60% 55% / 0.3))`,
                       }}
                     />
                     {/* Animated glow traveling along the line */}
@@ -346,8 +346,8 @@ const ProcessSection = () => {
                         isVisible ? "opacity-100" : "opacity-0"
                       }`}
                       style={{ 
-                        background: `linear-gradient(${isLeft ? 'to left' : 'to right'}, transparent, hsl(245 58% 51%), transparent)`,
-                        animation: isVisible ? `${isLeft ? 'drawLineLeft' : 'drawLineRight'} 1.2s ease-out ${index * 150 + 100}ms forwards` : 'none',
+                        background: `linear-gradient(to right, transparent, hsl(245 58% 51%), transparent)`,
+                        animation: isVisible ? `drawLineLeft 1.2s ease-out ${index * 150 + 100}ms forwards` : 'none',
                         filter: 'blur(1px)',
                       }}
                     />
