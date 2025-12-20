@@ -92,24 +92,32 @@ const Universities = () => {
                 {filteredUniversities.map((uni, index) => (
                   <div
                     key={uni.id}
-                    className={`group bg-card rounded-2xl p-6 shadow-card hover:shadow-hover transition-all duration-500 border border-transparent hover:border-primary/20 flex flex-col ${
-                      isVisible ? "animate-fade-in-up" : "opacity-0"
-                    }`}
-                    style={{ animationDelay: `${Math.min(index * 0.03, 0.3)}s` }}
+                    className={`group relative bg-card rounded-2xl p-6 shadow-card transition-all duration-500 border border-transparent flex flex-col overflow-hidden
+                      hover:shadow-[0_8px_40px_-5px_hsl(245_58%_51%/0.25)] hover:border-indigo-500/30 hover:-translate-y-1
+                      before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-indigo-500/0 before:to-purple-500/0 before:transition-all before:duration-500
+                      hover:before:from-indigo-500/5 hover:before:to-purple-500/10
+                      ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+                    style={{ animationDelay: `${Math.min(index * 0.05, 0.4)}s` }}
                   >
+                    {/* Glow effect on hover */}
+                    <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 group-hover:opacity-100 group-hover:from-indigo-500/20 group-hover:via-purple-500/10 group-hover:to-pink-500/20 transition-all duration-500 blur-xl -z-10" />
+                    
                     {/* Logo */}
                     <div 
-                      className={`w-20 h-20 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform`}
+                      className={`relative w-20 h-20 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center mb-4 shadow-lg 
+                        transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-xl`}
                     >
-                      <span className="text-white font-bold text-lg">{uni.shortName}</span>
+                      <span className="text-white font-bold text-lg drop-shadow-md">{uni.shortName}</span>
+                      {/* Shine effect */}
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
 
                     {/* University Info */}
-                    <div className="flex-grow">
-                      <h3 className="font-semibold text-foreground text-base mb-2 line-clamp-2">
+                    <div className="flex-grow relative z-10">
+                      <h3 className="font-semibold text-foreground text-base mb-2 line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                         {uni.name}
                       </h3>
-                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
+                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2 group-hover:text-foreground/70 transition-colors duration-300">
                         <MapPin className="w-4 h-4 flex-shrink-0" />
                         <span>{uni.location}, Malaysia</span>
                       </div>
@@ -117,19 +125,19 @@ const Universities = () => {
                         <FileCheck className="w-4 h-4 flex-shrink-0" />
                         <span>Offer Letter: <span className="text-green-600 dark:text-green-400 font-medium">Yes</span></span>
                       </div>
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
                         uni.type === "Public" 
-                          ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" 
-                          : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
+                          ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40" 
+                          : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/40"
                       }`}>
                         {uni.type}
                       </span>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-2 mt-4 pt-4 border-t border-border">
+                    <div className="flex gap-2 mt-4 pt-4 border-t border-border/50 group-hover:border-indigo-500/20 transition-colors duration-300 relative z-10">
                       <Link to="/contact" className="flex-1">
-                        <Button size="sm" className="w-full btn-glass-primary rounded-lg">
+                        <Button size="sm" className="w-full btn-glass-primary rounded-lg group-hover:shadow-md transition-shadow duration-300">
                           Apply Now
                         </Button>
                       </Link>
@@ -152,22 +160,26 @@ const Universities = () => {
 
             {/* Stats */}
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div className="p-6 bg-card rounded-2xl shadow-card">
-                <div className="text-3xl font-bold gradient-text mb-2">{universities.length}+</div>
-                <div className="text-muted-foreground text-sm">Partner Universities</div>
-              </div>
-              <div className="p-6 bg-card rounded-2xl shadow-card">
-                <div className="text-3xl font-bold gradient-text mb-2">{universities.filter(u => u.type === "Public").length}</div>
-                <div className="text-muted-foreground text-sm">Public Universities</div>
-              </div>
-              <div className="p-6 bg-card rounded-2xl shadow-card">
-                <div className="text-3xl font-bold gradient-text mb-2">{universities.filter(u => u.type === "Private").length}</div>
-                <div className="text-muted-foreground text-sm">Private Universities</div>
-              </div>
-              <div className="p-6 bg-card rounded-2xl shadow-card">
-                <div className="text-3xl font-bold gradient-text mb-2">100%</div>
-                <div className="text-muted-foreground text-sm">Success Rate</div>
-              </div>
+              {[
+                { value: `${universities.length}+`, label: "Partner Universities" },
+                { value: universities.filter(u => u.type === "Public").length, label: "Public Universities" },
+                { value: universities.filter(u => u.type === "Private").length, label: "Private Universities" },
+                { value: "100%", label: "Success Rate" },
+              ].map((stat, index) => (
+                <div 
+                  key={stat.label}
+                  className={`group relative p-6 bg-card rounded-2xl shadow-card overflow-hidden transition-all duration-500 hover:shadow-hover hover:-translate-y-1
+                    before:absolute before:inset-0 before:bg-gradient-to-br before:from-indigo-500/0 before:to-purple-500/0 before:transition-all before:duration-500
+                    hover:before:from-indigo-500/5 hover:before:to-purple-500/10
+                    ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+                >
+                  <div className="relative z-10">
+                    <div className="text-3xl font-bold gradient-text mb-2 group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
+                    <div className="text-muted-foreground text-sm group-hover:text-foreground/70 transition-colors duration-300">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
