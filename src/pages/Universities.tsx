@@ -86,62 +86,58 @@ const Universities = () => {
               </div>
             </div>
 
-            {/* Universities List */}
+            {/* Universities Grid */}
             {filteredUniversities.length > 0 ? (
-              <div className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredUniversities.map((uni, index) => (
                   <div
                     key={uni.id}
-                    className={`group bg-card rounded-2xl p-6 shadow-card hover:shadow-hover transition-all duration-500 border border-transparent hover:border-primary/20 ${
+                    className={`group bg-card rounded-2xl p-6 shadow-card hover:shadow-hover transition-all duration-500 border border-transparent hover:border-primary/20 flex flex-col ${
                       isVisible ? "animate-fade-in-up" : "opacity-0"
                     }`}
                     style={{ animationDelay: `${Math.min(index * 0.03, 0.3)}s` }}
                   >
-                    <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-                      {/* Logo */}
-                      <div 
-                        className={`w-20 h-20 md:w-24 md:h-24 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center flex-shrink-0 shadow-md`}
-                      >
-                        <span className="text-white font-bold text-lg md:text-xl">{uni.shortName}</span>
-                      </div>
+                    {/* Logo */}
+                    <div 
+                      className={`w-20 h-20 rounded-xl bg-gradient-to-br ${uni.color} flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform`}
+                    >
+                      <span className="text-white font-bold text-lg">{uni.shortName}</span>
+                    </div>
 
-                      {/* University Info */}
-                      <div className="flex-grow">
-                        <h3 className="font-semibold text-foreground text-lg md:text-xl mb-2">
-                          {uni.name} ({uni.shortName})
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
-                          <div className="flex items-center gap-1">
-                            <MapPin className="w-4 h-4" />
-                            <span>{uni.location}, Malaysia</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <FileCheck className="w-4 h-4" />
-                            <span>Offer Letter Applicable: <span className="text-green-600 dark:text-green-400 font-medium">Yes</span></span>
-                          </div>
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            uni.type === "Public" 
-                              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" 
-                              : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
-                          }`}>
-                            {uni.type}
-                          </span>
-                        </div>
+                    {/* University Info */}
+                    <div className="flex-grow">
+                      <h3 className="font-semibold text-foreground text-base mb-2 line-clamp-2">
+                        {uni.name}
+                      </h3>
+                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
+                        <MapPin className="w-4 h-4 flex-shrink-0" />
+                        <span>{uni.location}, Malaysia</span>
                       </div>
+                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-3">
+                        <FileCheck className="w-4 h-4 flex-shrink-0" />
+                        <span>Offer Letter: <span className="text-green-600 dark:text-green-400 font-medium">Yes</span></span>
+                      </div>
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                        uni.type === "Public" 
+                          ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" 
+                          : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
+                      }`}>
+                        {uni.type}
+                      </span>
+                    </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex flex-row md:flex-col gap-2 flex-shrink-0">
-                        <Link to="/contact" className="flex-1 md:flex-none">
-                          <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                            Apply Now
-                          </Button>
-                        </Link>
-                        <Link to={`/universities/${uni.id}`} className="flex-1 md:flex-none">
-                          <Button variant="outline" className="w-full border-primary/50 text-primary hover:bg-primary/10">
-                            Details
-                          </Button>
-                        </Link>
-                      </div>
+                    {/* Action Buttons */}
+                    <div className="flex gap-2 mt-4 pt-4 border-t border-border">
+                      <Link to="/contact" className="flex-1">
+                        <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                          Apply Now
+                        </Button>
+                      </Link>
+                      <Link to={`/universities/${uni.id}`} className="flex-1">
+                        <Button size="sm" variant="outline" className="w-full border-muted-foreground/30 hover:bg-muted">
+                          Details
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 ))}
