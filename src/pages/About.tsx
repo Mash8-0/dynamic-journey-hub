@@ -25,7 +25,7 @@ const teamMembers = [
     linkedin: "#",
     email: "sarah@visaroute.com",
     isCoFounder: true,
-    imagePosition: "object-cover object-[center_5%]",
+    imagePosition: "object-cover object-top",
   },
   {
     name: "Dr. Michael Tan",
