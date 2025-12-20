@@ -3,6 +3,7 @@ import { MapPin, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import { Input } from "@/components/ui/input";
 import { universities } from "@/data/universities";
 
@@ -148,6 +149,7 @@ const Universities = () => {
             </div>
           </div>
         </section>
+        <ContactSection />
       </div>
       <Footer />
     </div>
