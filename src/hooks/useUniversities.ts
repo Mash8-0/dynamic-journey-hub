@@ -20,6 +20,7 @@ export interface University {
   established: number;
   ranking?: string;
   website: string;
+  logoUrl?: string;
   programs: Program[];
   facilities: string[];
   highlights: string[];
@@ -72,6 +73,7 @@ export const useUniversities = () => {
         established: uni.established,
         ranking: uni.ranking || undefined,
         website: uni.website,
+        logoUrl: uni.logo_url || undefined,
         programs: programsByUniversity?.[uni.id] || [],
         facilities: uni.facilities || [],
         highlights: uni.highlights || [],
@@ -117,6 +119,7 @@ export const useUniversity = (id: string | undefined) => {
         established: university.established,
         ranking: university.ranking || undefined,
         website: university.website,
+        logoUrl: university.logo_url || undefined,
         programs: (programs || []).map((prog) => ({
           id: prog.id,
           name: prog.name,
