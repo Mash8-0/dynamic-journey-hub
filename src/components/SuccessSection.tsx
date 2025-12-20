@@ -80,16 +80,19 @@ const SuccessSection = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           <div className="text-center">
-            <CountUp end={35} suffix="K+" />
+            <CountUp end={400} suffix="+" />
             <p className="text-muted-foreground mt-2">Happy Students</p>
           </div>
           <div className="text-center">
-            <CountUp end={100} suffix="+" />
+            <CountUp end={55} suffix="+" />
             <p className="text-muted-foreground mt-2">Universities</p>
           </div>
           <div className="text-center">
-            <CountUp end={50} suffix="+" />
-            <p className="text-muted-foreground mt-2">Countries</p>
+            <div className="text-4xl lg:text-5xl font-bold gradient-text flex items-center justify-center gap-2">
+              <span className="text-3xl lg:text-4xl">🇲🇾</span>
+              <span>Malaysia</span>
+            </div>
+            <p className="text-muted-foreground mt-2">Your Destination</p>
           </div>
           <div className="text-center">
             <CountUp end={98} suffix="%" />
