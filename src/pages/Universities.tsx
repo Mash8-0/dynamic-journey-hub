@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MapPin, Search, FileCheck } from "lucide-react";
+import { MapPin, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -25,11 +25,6 @@ const UniversityCardSkeleton = () => (
       <div className="h-3 w-24 rounded animate-shimmer" style={{ animationDelay: '0.2s' }} />
     </div>
     
-    {/* Offer letter skeleton */}
-    <div className="flex items-center gap-2 mb-3">
-      <div className="w-4 h-4 rounded-full animate-shimmer" style={{ animationDelay: '0.25s' }} />
-      <div className="h-3 w-28 rounded animate-shimmer" style={{ animationDelay: '0.3s' }} />
-    </div>
     
     {/* Badge skeleton */}
     <div className="h-6 w-16 rounded-full animate-shimmer" style={{ animationDelay: '0.35s' }} />
@@ -167,13 +162,9 @@ const Universities = () => {
                       <h3 className="font-semibold text-foreground text-base mb-2 line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                         {uni.name}
                       </h3>
-                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2 group-hover:text-foreground/70 transition-colors duration-300">
+                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-3 group-hover:text-foreground/70 transition-colors duration-300">
                         <MapPin className="w-4 h-4 flex-shrink-0" />
                         <span>{uni.location}, Malaysia</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-muted-foreground text-sm mb-3">
-                        <FileCheck className="w-4 h-4 flex-shrink-0" />
-                        <span>Offer Letter: <span className="text-green-600 dark:text-green-400 font-medium">Yes</span></span>
                       </div>
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
                         uni.type === "Public" 
