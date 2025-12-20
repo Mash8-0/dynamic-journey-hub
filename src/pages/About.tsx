@@ -71,11 +71,11 @@ const TeamMemberCard = ({ member }: { member: typeof teamMembers[0] }) => {
     }`}>
       <CardContent className="p-0">
         <div className="relative overflow-hidden">
-          <div className={`aspect-square ${isLeader ? 'bg-gradient-to-br from-primary/20 to-accent/20' : 'bg-muted'}`}>
+          <div className={`${isLeader ? 'aspect-[3/4]' : 'aspect-square'} ${isLeader ? 'bg-gradient-to-br from-primary/20 to-accent/20' : 'bg-muted'}`}>
             <img
               src={member.image}
               alt={member.name}
-              className={`w-full h-full object-cover ${imagePosition} transition-transform duration-500 group-hover:scale-110`}
+              className={`w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110`}
             />
           </div>
           {/* Overlay on hover */}
