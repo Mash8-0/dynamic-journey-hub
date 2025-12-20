@@ -6,13 +6,57 @@ import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
 import { universities } from "@/data/universities";
+
+// Skeleton card component with shimmer effect
+const UniversityCardSkeleton = () => (
+  <div className="bg-card rounded-2xl p-6 shadow-card border border-transparent flex flex-col overflow-hidden">
+    {/* Logo skeleton */}
+    <div className="w-20 h-20 rounded-xl mb-4 animate-shimmer" />
+    
+    {/* Title skeleton */}
+    <div className="h-5 w-3/4 mb-2 rounded animate-shimmer" />
+    <div className="h-4 w-1/2 mb-2 rounded animate-shimmer" style={{ animationDelay: '0.1s' }} />
+    
+    {/* Location skeleton */}
+    <div className="flex items-center gap-2 mb-2">
+      <div className="w-4 h-4 rounded-full animate-shimmer" style={{ animationDelay: '0.15s' }} />
+      <div className="h-3 w-24 rounded animate-shimmer" style={{ animationDelay: '0.2s' }} />
+    </div>
+    
+    {/* Offer letter skeleton */}
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-4 h-4 rounded-full animate-shimmer" style={{ animationDelay: '0.25s' }} />
+      <div className="h-3 w-28 rounded animate-shimmer" style={{ animationDelay: '0.3s' }} />
+    </div>
+    
+    {/* Badge skeleton */}
+    <div className="h-6 w-16 rounded-full animate-shimmer" style={{ animationDelay: '0.35s' }} />
+    
+    {/* Buttons skeleton */}
+    <div className="flex gap-2 mt-4 pt-4 border-t border-border/50">
+      <div className="h-8 flex-1 rounded-lg animate-shimmer" style={{ animationDelay: '0.4s' }} />
+      <div className="h-8 flex-1 rounded-lg animate-shimmer" style={{ animationDelay: '0.45s' }} />
+    </div>
+  </div>
+);
 
 const Universities = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState<"All" | "Public" | "Private">("All");
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,7 +131,13 @@ const Universities = () => {
             </div>
 
             {/* Universities Grid */}
-            {filteredUniversities.length > 0 ? (
+            {isLoading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <UniversityCardSkeleton key={index} />
+                ))}
+              </div>
+            ) : filteredUniversities.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredUniversities.map((uni, index) => (
                   <div
