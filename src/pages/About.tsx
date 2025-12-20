@@ -4,6 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import { Users, Target, Award, Heart, Lightbulb, Eye, Linkedin, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import ceoFounderImage from "@/assets/ceo-founder.jpg";
+import coFounderImage from "@/assets/co-founder-coo.png";
 
 const teamMembers = [
   {
@@ -18,7 +19,7 @@ const teamMembers = [
   {
     name: "Sarah Chen",
     role: "Co-Founder & COO",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+    image: coFounderImage,
     bio: "Sarah brings 12 years of operations expertise, ensuring every student receives personalized attention and support.",
     linkedin: "#",
     email: "sarah@visaroute.com",
