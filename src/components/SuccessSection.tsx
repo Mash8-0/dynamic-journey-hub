@@ -89,20 +89,53 @@ const SuccessSection = () => {
           </div>
           <div className="text-center">
             <div className="text-4xl lg:text-5xl font-bold gradient-text flex items-center justify-center gap-3">
-              <svg viewBox="0 0 56 28" className="w-12 h-6 lg:w-16 lg:h-8 rounded shadow-md">
-                <rect width="56" height="28" fill="#CC0001"/>
-                <rect y="2" width="56" height="2" fill="#FFF"/>
-                <rect y="6" width="56" height="2" fill="#FFF"/>
-                <rect y="10" width="56" height="2" fill="#FFF"/>
-                <rect y="14" width="56" height="2" fill="#FFF"/>
-                <rect y="18" width="56" height="2" fill="#FFF"/>
-                <rect y="22" width="56" height="2" fill="#FFF"/>
-                <rect y="26" width="56" height="2" fill="#FFF"/>
-                <rect width="28" height="14" fill="#010066"/>
-                <circle cx="12" cy="7" r="5" fill="#FFCC00"/>
-                <circle cx="13.5" cy="7" r="4" fill="#010066"/>
-                <polygon points="22,3 23,6 26,6 24,8 25,11 22,9 19,11 20,8 18,6 21,6" fill="#FFCC00"/>
-              </svg>
+              <div className="relative w-14 h-9 lg:w-18 lg:h-12 overflow-hidden">
+                <svg 
+                  viewBox="0 0 56 28" 
+                  className="w-full h-full rounded shadow-lg"
+                  style={{
+                    animation: 'wave 3s ease-in-out infinite',
+                    transformOrigin: 'left center',
+                  }}
+                >
+                  <defs>
+                    <linearGradient id="flagShine" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="rgba(255,255,255,0.2)" />
+                      <stop offset="50%" stopColor="rgba(255,255,255,0)" />
+                      <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="56" height="28" fill="#CC0001"/>
+                  <rect y="2" width="56" height="2" fill="#FFF"/>
+                  <rect y="6" width="56" height="2" fill="#FFF"/>
+                  <rect y="10" width="56" height="2" fill="#FFF"/>
+                  <rect y="14" width="56" height="2" fill="#FFF"/>
+                  <rect y="18" width="56" height="2" fill="#FFF"/>
+                  <rect y="22" width="56" height="2" fill="#FFF"/>
+                  <rect y="26" width="56" height="2" fill="#FFF"/>
+                  <rect width="28" height="14" fill="#010066"/>
+                  <circle cx="12" cy="7" r="5" fill="#FFCC00"/>
+                  <circle cx="13.5" cy="7" r="4" fill="#010066"/>
+                  <polygon points="22,3 23,6 26,6 24,8 25,11 22,9 19,11 20,8 18,6 21,6" fill="#FFCC00"/>
+                  <rect width="56" height="28" fill="url(#flagShine)" />
+                </svg>
+                <style>{`
+                  @keyframes wave {
+                    0%, 100% { 
+                      transform: perspective(300px) rotateY(0deg) skewY(0deg); 
+                    }
+                    25% { 
+                      transform: perspective(300px) rotateY(-5deg) skewY(1deg); 
+                    }
+                    50% { 
+                      transform: perspective(300px) rotateY(0deg) skewY(-1deg); 
+                    }
+                    75% { 
+                      transform: perspective(300px) rotateY(5deg) skewY(1deg); 
+                    }
+                  }
+                `}</style>
+              </div>
               <span>Malaysia</span>
             </div>
             <p className="text-muted-foreground mt-2">Your Destination</p>
