@@ -98,6 +98,9 @@ const Footer = () => {
             © {currentYear} VisaRoute. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-background/60">
+            <a href="/admin/auth" className="hover:text-background transition-colors">
+              Admin
+            </a>
             <a href="#" className="hover:text-background transition-colors">
               Privacy Policy
             </a>
