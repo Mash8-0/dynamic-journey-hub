@@ -41,6 +41,95 @@ export type Database = {
         }
         Relationships: []
       }
+      programs: {
+        Row: {
+          created_at: string
+          duration: string
+          faculty: string
+          id: string
+          level: string
+          name: string
+          university_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration: string
+          faculty: string
+          id?: string
+          level: string
+          name: string
+          university_id: string
+        }
+        Update: {
+          created_at?: string
+          duration?: string
+          faculty?: string
+          id?: string
+          level?: string
+          name?: string
+          university_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "programs_university_id_fkey"
+            columns: ["university_id"]
+            isOneToOne: false
+            referencedRelation: "universities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      universities: {
+        Row: {
+          color: string
+          created_at: string
+          description: string
+          established: number
+          facilities: string[]
+          highlights: string[]
+          id: string
+          location: string
+          name: string
+          ranking: string | null
+          short_name: string
+          type: string
+          updated_at: string
+          website: string
+        }
+        Insert: {
+          color: string
+          created_at?: string
+          description: string
+          established: number
+          facilities?: string[]
+          highlights?: string[]
+          id: string
+          location: string
+          name: string
+          ranking?: string | null
+          short_name: string
+          type: string
+          updated_at?: string
+          website: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          description?: string
+          established?: number
+          facilities?: string[]
+          highlights?: string[]
+          id?: string
+          location?: string
+          name?: string
+          ranking?: string | null
+          short_name?: string
+          type?: string
+          updated_at?: string
+          website?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
