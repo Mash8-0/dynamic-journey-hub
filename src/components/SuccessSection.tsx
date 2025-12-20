@@ -88,8 +88,21 @@ const SuccessSection = () => {
             <p className="text-muted-foreground mt-2">Universities</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl lg:text-5xl font-bold gradient-text flex items-center justify-center gap-2">
-              <span className="text-3xl lg:text-4xl">🇲🇾</span>
+            <div className="text-4xl lg:text-5xl font-bold gradient-text flex items-center justify-center gap-3">
+              <svg viewBox="0 0 56 28" className="w-12 h-6 lg:w-16 lg:h-8 rounded shadow-md">
+                <rect width="56" height="28" fill="#CC0001"/>
+                <rect y="2" width="56" height="2" fill="#FFF"/>
+                <rect y="6" width="56" height="2" fill="#FFF"/>
+                <rect y="10" width="56" height="2" fill="#FFF"/>
+                <rect y="14" width="56" height="2" fill="#FFF"/>
+                <rect y="18" width="56" height="2" fill="#FFF"/>
+                <rect y="22" width="56" height="2" fill="#FFF"/>
+                <rect y="26" width="56" height="2" fill="#FFF"/>
+                <rect width="28" height="14" fill="#010066"/>
+                <circle cx="12" cy="7" r="5" fill="#FFCC00"/>
+                <circle cx="13.5" cy="7" r="4" fill="#010066"/>
+                <polygon points="22,3 23,6 26,6 24,8 25,11 22,9 19,11 20,8 18,6 21,6" fill="#FFCC00"/>
+              </svg>
               <span>Malaysia</span>
             </div>
             <p className="text-muted-foreground mt-2">Your Destination</p>
