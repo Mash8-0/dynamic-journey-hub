@@ -97,7 +97,7 @@ const ServicesSection = () => {
   }, []);
 
   return (
-    <section id="services" className="py-20 lg:py-32 bg-background relative overflow-hidden" ref={sectionRef}>
+    <section id="services" className="py-12 sm:py-16 lg:py-24 bg-background relative overflow-hidden" ref={sectionRef}>
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '8s' }} />
@@ -106,28 +106,28 @@ const ServicesSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4">
             Our <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base px-4">
             Comprehensive support for your educational journey abroad
           </p>
         </div>
 
         {/* Services Grid */}
         {isLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {Array.from({ length: 6 }).map((_, index) => (
               <ServiceCardSkeleton key={index} />
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`group relative bg-card rounded-2xl p-6 shadow-card transition-all duration-500 border border-transparent flex flex-col overflow-hidden
+                className={`group relative bg-card rounded-2xl p-4 sm:p-6 shadow-card transition-all duration-500 border border-transparent flex flex-col overflow-hidden
                   hover:shadow-[0_8px_40px_-5px_hsl(245_58%_51%/0.25)] hover:border-indigo-500/30 hover:-translate-y-2
                   before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-indigo-500/0 before:to-purple-500/0 before:transition-all before:duration-500
                   hover:before:from-indigo-500/5 hover:before:to-purple-500/10
@@ -139,20 +139,20 @@ const ServicesSection = () => {
                 
                 {/* Icon */}
                 <div 
-                  className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-5 shadow-lg
+                  className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 sm:mb-5 shadow-lg
                     transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-xl`}
                 >
-                  <service.icon className="w-7 h-7 text-white drop-shadow-md" />
+                  <service.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white drop-shadow-md" />
                   {/* Shine effect */}
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
                 {/* Content */}
                 <div className="flex-grow relative z-10">
-                  <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
+                  <p className="text-muted-foreground mb-3 sm:mb-4 leading-relaxed group-hover:text-foreground/70 transition-colors duration-300 text-sm sm:text-base">
                     {service.description}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ const ServicesSection = () => {
                 {/* CTA */}
                 <Link
                   to="/contact"
-                  className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium group-hover:gap-2 transition-all relative z-10"
+                  className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium group-hover:gap-2 transition-all relative z-10 text-sm sm:text-base"
                 >
                   Get help
                   <ArrowRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-all" />
@@ -171,11 +171,11 @@ const ServicesSection = () => {
         )}
 
         {/* CTA Button */}
-        <div className={`text-center mt-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: '0.6s' }}>
+        <div className={`text-center mt-8 sm:mt-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: '0.6s' }}>
           <Link to="/contact">
-            <Button className="btn-glass-primary rounded-full px-8 py-6 text-lg">
+            <Button className="btn-glass-primary rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg">
               Get Free Consultation
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
             </Button>
           </Link>
         </div>
