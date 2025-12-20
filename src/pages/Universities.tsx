@@ -20,19 +20,25 @@ const UniversityCardSkeleton = () => (
     <div className="h-4 w-1/2 mb-2 rounded animate-shimmer" style={{ animationDelay: '0.1s' }} />
     
     {/* Location skeleton */}
-    <div className="flex items-center gap-2 mb-2">
+    <div className="flex items-center gap-2 mb-3">
       <div className="w-4 h-4 rounded-full animate-shimmer" style={{ animationDelay: '0.15s' }} />
       <div className="h-3 w-24 rounded animate-shimmer" style={{ animationDelay: '0.2s' }} />
     </div>
     
+    {/* Program levels skeleton */}
+    <div className="flex flex-wrap gap-1 mb-3">
+      <div className="h-4 w-14 rounded animate-shimmer" style={{ animationDelay: '0.25s' }} />
+      <div className="h-4 w-12 rounded animate-shimmer" style={{ animationDelay: '0.3s' }} />
+      <div className="h-4 w-16 rounded animate-shimmer" style={{ animationDelay: '0.35s' }} />
+    </div>
     
     {/* Badge skeleton */}
-    <div className="h-6 w-16 rounded-full animate-shimmer" style={{ animationDelay: '0.35s' }} />
+    <div className="h-6 w-16 rounded-full animate-shimmer" style={{ animationDelay: '0.4s' }} />
     
     {/* Buttons skeleton */}
     <div className="flex gap-2 mt-4 pt-4 border-t border-border/50">
-      <div className="h-8 flex-1 rounded-lg animate-shimmer" style={{ animationDelay: '0.4s' }} />
       <div className="h-8 flex-1 rounded-lg animate-shimmer" style={{ animationDelay: '0.45s' }} />
+      <div className="h-8 flex-1 rounded-lg animate-shimmer" style={{ animationDelay: '0.5s' }} />
     </div>
   </div>
 );
@@ -166,6 +172,23 @@ const Universities = () => {
                         <MapPin className="w-4 h-4 flex-shrink-0" />
                         <span>{uni.location}, Malaysia</span>
                       </div>
+                      
+                      {/* Program Levels */}
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {(["Foundation", "Diploma", "Bachelor", "Master", "PhD"] as const).map((level) => {
+                          const hasLevel = uni.programs.some(p => p.level === level);
+                          if (!hasLevel) return null;
+                          return (
+                            <span 
+                              key={level}
+                              className="px-2 py-0.5 rounded text-[10px] font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300"
+                            >
+                              {level}
+                            </span>
+                          );
+                        })}
+                      </div>
+
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
                         uni.type === "Public" 
                           ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40" 
