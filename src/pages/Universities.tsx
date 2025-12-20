@@ -129,12 +129,12 @@ const Universities = () => {
                     {/* Action Buttons */}
                     <div className="flex gap-2 mt-4 pt-4 border-t border-border">
                       <Link to="/contact" className="flex-1">
-                        <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                        <Button size="sm" className="w-full btn-glass-primary rounded-lg">
                           Apply Now
                         </Button>
                       </Link>
                       <Link to={`/universities/${uni.id}`} className="flex-1">
-                        <Button size="sm" variant="outline" className="w-full border-muted-foreground/30 hover:bg-muted">
+                        <Button size="sm" variant="ghost" className="w-full btn-glass-outline rounded-lg">
                           Details
                         </Button>
                       </Link>
