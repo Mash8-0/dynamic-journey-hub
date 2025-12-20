@@ -15,6 +15,7 @@ const teamMembers = [
     linkedin: "#",
     email: "ahmad@visaroute.com",
     isFounder: true,
+    imagePosition: "object-top",
   },
   {
     name: "Sarah Chen",
@@ -24,6 +25,7 @@ const teamMembers = [
     linkedin: "#",
     email: "sarah@visaroute.com",
     isCoFounder: true,
+    imagePosition: "object-[center_20%]",
   },
   {
     name: "Dr. Michael Tan",
@@ -61,6 +63,7 @@ const teamMembers = [
 
 const TeamMemberCard = ({ member }: { member: typeof teamMembers[0] }) => {
   const isLeader = member.isFounder || member.isCoFounder;
+  const imagePosition = member.imagePosition || "object-center";
   
   return (
     <Card className={`group overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
@@ -72,7 +75,7 @@ const TeamMemberCard = ({ member }: { member: typeof teamMembers[0] }) => {
             <img
               src={member.image}
               alt={member.name}
-              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+              className={`w-full h-full object-cover ${imagePosition} transition-transform duration-500 group-hover:scale-110`}
             />
           </div>
           {/* Overlay on hover */}
