@@ -8,22 +8,22 @@ import coFounderImage from "@/assets/co-founder-coo.png";
 
 const teamMembers = [
   {
-    name: "Ahmad Rahman",
+    name: "Mehedi Hasan",
     role: "Founder & CEO",
     image: ceoFounderImage,
-    bio: "With over 15 years in international education, Ahmad founded VisaRoute to help students achieve their global education dreams.",
+    bio: "With over 15 years in international education, Mehedi founded VisaRoute to help students achieve their global education dreams.",
     linkedin: "#",
-    email: "ahmad@visaroute.com",
+    email: "mehedi@visaroute.com",
     isFounder: true,
     imagePosition: "object-contain object-top",
   },
   {
-    name: "Sarah Chen",
+    name: "Mashrur",
     role: "Co-Founder & COO",
     image: coFounderImage,
-    bio: "Sarah brings 12 years of operations expertise, ensuring every student receives personalized attention and support.",
+    bio: "Mashrur brings 12 years of operations expertise, ensuring every student receives personalized attention and support.",
     linkedin: "#",
-    email: "sarah@visaroute.com",
+    email: "mashrur@visaroute.com",
     isCoFounder: true,
     imagePosition: "object-contain object-[center_0%]",
   },
