@@ -180,8 +180,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification email to admin
     const adminEmailResponse = await resend.emails.send({
-      from: "VisaRoute <onboarding@resend.dev>",
-      to: ["info@visaroute.com"],
+      from: "VisaRoute BD <onboarding@resend.dev>",
+      to: ["info@visaroutebd.com"],
       subject: `New Contact Form Submission from ${sanitizedName}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -197,15 +197,15 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to user
     const userEmailResponse = await resend.emails.send({
-      from: "VisaRoute <onboarding@resend.dev>",
+      from: "VisaRoute BD <onboarding@resend.dev>",
       to: [sanitizedEmail],
-      subject: "Thank you for contacting VisaRoute!",
+      subject: "Thank you for contacting VisaRoute BD!",
       html: `
         <h1>Thank you, ${escapeHtml(sanitizedName)}!</h1>
         <p>We have received your inquiry and our team will get back to you within 24 hours.</p>
         <p>In the meantime, feel free to explore our services and success stories.</p>
         <br>
-        <p>Best regards,<br>The VisaRoute Team</p>
+        <p>Best regards,<br>The VisaRoute BD Team</p>
       `,
     });
 

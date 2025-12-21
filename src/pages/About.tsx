@@ -11,9 +11,9 @@ const teamMembers = [
     name: "Mehedi Hasan",
     role: "Founder & CEO",
     image: ceoFounderImage,
-    bio: "With over 15 years in international education, Mehedi founded VisaRoute to help students achieve their global education dreams.",
+    bio: "With over 15 years in international education, Mehedi founded VisaRoute BD to help students achieve their global education dreams.",
     linkedin: "#",
-    email: "mehedi@visaroute.com",
+    email: "mehedi@visaroutebd.com",
     isFounder: true,
     imagePosition: "object-contain object-top",
   },
@@ -23,7 +23,7 @@ const teamMembers = [
     image: coFounderImage,
     bio: "Mashrur brings 12 years of operations expertise, ensuring every student receives personalized attention and support.",
     linkedin: "#",
-    email: "mashrur@visaroute.com",
+    email: "mashrur@visaroutebd.com",
     isCoFounder: true,
     imagePosition: "object-contain object-[center_0%]",
   },
@@ -33,7 +33,7 @@ const teamMembers = [
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     bio: "Former university admissions officer with deep knowledge of application processes.",
     linkedin: "#",
-    email: "michael@visaroute.com",
+    email: "michael@visaroutebd.com",
   },
   {
     name: "Priya Sharma",
@@ -41,7 +41,7 @@ const teamMembers = [
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
     bio: "Expert in Malaysian visa regulations with 8+ years helping students navigate immigration.",
     linkedin: "#",
-    email: "priya@visaroute.com",
+    email: "priya@visaroutebd.com",
   },
   {
     name: "James Wong",
@@ -49,7 +49,7 @@ const teamMembers = [
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
     bio: "Dedicated to ensuring every student's journey from application to graduation is smooth.",
     linkedin: "#",
-    email: "james@visaroute.com",
+    email: "james@visaroutebd.com",
   },
   {
     name: "Aisha Malik",
@@ -57,7 +57,7 @@ const teamMembers = [
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
     bio: "Builds and maintains partnerships with top Malaysian universities.",
     linkedin: "#",
-    email: "aisha@visaroute.com",
+    email: "aisha@visaroutebd.com",
   },
 ];
 
@@ -125,9 +125,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="About Us - VisaRoute | Your Trusted Education Partner"
-        description="Learn about VisaRoute's mission to help students achieve their dreams of studying in Malaysia. Meet our experienced team of education consultants."
-        keywords="about visaroute, education consultants, study abroad team, malaysia education experts"
+        title="About Us - VisaRoute BD | Your Trusted Education Partner"
+        description="Learn about VisaRoute BD's mission to help students achieve their dreams of studying in Malaysia. Meet our experienced team of education consultants."
+        keywords="about visaroutebd, education consultants, study abroad team, malaysia education experts"
       />
       <Navbar />
       <div className="pt-20">
