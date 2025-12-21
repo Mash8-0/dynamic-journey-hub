@@ -7,7 +7,7 @@ const testimonials = [
     country: "Australia",
     university: "University of Melbourne",
     image: "SA",
-    text: "VisaRoute made my dream of studying in Australia a reality. Their step-by-step guidance was invaluable!",
+    text: "VisaRoute BD made my dream of studying in Australia a reality. Their step-by-step guidance was invaluable!",
     rating: 5,
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     country: "UK",
     university: "University of Oxford",
     image: "FK",
-    text: "I was overwhelmed by the visa process until VisaRoute helped me. Now I'm living my dream in the UK!",
+    text: "I was overwhelmed by the visa process until VisaRoute BD helped me. Now I'm living my dream in the UK!",
     rating: 5,
   },
 ];

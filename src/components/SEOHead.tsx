@@ -11,7 +11,7 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({
-  title = "Global Consultancy | Study Abroad Experts",
+  title = "VisaRoute BD | Study Abroad Experts",
   description = "Expert study abroad consultancy helping students achieve their dreams of international education.",
   keywords = "study abroad, international education, visa consultancy",
   canonicalUrl,
