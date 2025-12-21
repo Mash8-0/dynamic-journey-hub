@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, GraduationCap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,9 +36,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center transition-transform group-hover:scale-110">
-              <GraduationCap className="w-6 h-6 text-primary-foreground" />
-            </div>
+            <img 
+              src={logo} 
+              alt="VisaRoute BD Logo" 
+              className="w-10 h-10 object-contain transition-transform group-hover:scale-110"
+            />
             <span className="font-display text-xl font-bold text-foreground">
               VisaRoute BD
             </span>
