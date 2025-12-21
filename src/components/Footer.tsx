@@ -1,4 +1,5 @@
-import { GraduationCap, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,9 +32,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-6">
             <a href="#" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-primary-foreground" />
-              </div>
+              <img 
+                src={logo} 
+                alt="VisaRoute BD Logo" 
+                className="w-10 h-10 object-contain"
+              />
               <span className="font-display text-xl font-bold">VisaRoute BD</span>
             </a>
             <p className="text-background/70 leading-relaxed">
